@@ -14,4 +14,6 @@ async function database() {
 	logger("Database connected");
 }
 
+export const mongoClient = mongoose;
+
 export default database;
