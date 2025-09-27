@@ -1,5 +1,5 @@
 "use client";
-import { Eye, EyeOff, Loader2, Lock, Mail, Sparkles } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Loader2, Lock, Mail, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -120,16 +120,7 @@ export default function Signin() {
                 <div className="absolute bottom-32 left-20 w-80 h-80 bg-gradient-to-r from-purple-400/8 to-pink-400/8 rounded-full blur-3xl"></div>
             </div>
 
-            {/* Header with back button */}
-            <div className="relative z-10 w-full pt-8 pb-4">
-                <div className="max-w-md mx-auto px-6">
-                    <Link href="/" className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 mb-8">
-                        ← Back to home
-                    </Link>
-                </div>
-            </div>
-
-            <div className="relative z-10 flex items-center justify-center px-6 min-h-[calc(100vh-120px)]">
+            <div className="relative z-10 flex items-center justify-center px-6 min-h-screen">
                 <div className="w-full max-w-md">
                     {/* Brand header */}
                     <div className="text-center mb-8">
@@ -141,10 +132,21 @@ export default function Signin() {
                     </div>
 
                     <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 p-8">
-                        <div className="text-center mb-6">
+                        {/* Back button inside card */}
+                        <div className="mb-6">
+                            <Link
+                                href="/"
+                                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg transition-all duration-200 group"
+                            >
+                                <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
+                                Back to home
+                            </Link>
+                        </div>
+
+                        {/* <div className="text-center mb-6">
                             <h2 className="text-xl font-semibold mb-2">Sign in to your account</h2>
                             <p className="text-sm text-gray-600 dark:text-gray-400">Enter your credentials to continue</p>
-                        </div>
+                        </div> */}
 
                         {error && (
                             <Alert variant="destructive" className="mb-6">
@@ -206,7 +208,7 @@ export default function Signin() {
                         <Button
                             onClick={handleSignin}
                             disabled={isLoading || isGoogleLoading || !email || !password}
-                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-medium text-base shadow-lg hover:shadow-xl transition-all duration-200"
+                            className="w-full h-12 mt-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-medium text-base shadow-lg hover:shadow-xl transition-all duration-200"
                         >
                             {isLoading ? (
                                 <>

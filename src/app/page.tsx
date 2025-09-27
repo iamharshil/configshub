@@ -13,45 +13,15 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { LandingNav } from "@/components/landing/landing-nav";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+const ratingStars = ["one", "two", "three", "four", "five"] as const;
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-      </footer>
-    </div>
-  );
-}rder-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Database className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-xl font-bold">ConfigsHub</span>
-            </div>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="#features" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
-                Features
-              </Link>
-              <Link href="#pricing" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
-                Pricing
-              </Link>
-              <Link href="#about" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
-                About
-              </Link>
-              <Link href="/auth/signin">
-                <Button variant="ghost">Sign In</Button>
-              </Link>
-              <Link href="/auth/signup">
-                <Button>Get Started</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <LandingNav />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 lg:px-8 overflow-hidden">
@@ -136,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="py-20 px-6 lg:px-8">
+      <section id="about" className="py-20 px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -439,8 +409,8 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={`alex-${i}`} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                {ratingStars.map((identifier) => (
+                  <Star key={`alex-${identifier}`} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -459,8 +429,8 @@ export default function Home() {
 
             <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={`sarah-${i}`} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                {ratingStars.map((identifier) => (
+                  <Star key={`sarah-${identifier}`} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -479,8 +449,8 @@ export default function Home() {
 
             <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={`mike-${i}`} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                {ratingStars.map((identifier) => (
+                  <Star key={`mike-${identifier}`} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -544,10 +514,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section >
+      </section>
 
       {/* Footer */}
-      < footer className="py-12 px-6 lg:px-8 bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-gray-800" >
+      <footer className="py-12 px-6 lg:px-8 bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -566,7 +536,7 @@ export default function Home() {
             © 2025 ConfigsHub. All rights reserved.
           </div>
         </div>
-      </footer >
-    </div >
+      </footer>
+    </div>
   );
 }
