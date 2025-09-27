@@ -10,6 +10,8 @@ export const auth = betterAuth({
 		// Optional: if you don't provide a client, database transactions won't be enabled.
 		client,
 	}),
+	baseURL: process.env.NEXTAUTH_URL || "http://localhost:3000",
+	secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-key",
 	emailAndPassword: {
 		enabled: true,
 		requireEmailVerification: false,

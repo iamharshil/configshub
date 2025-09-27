@@ -22,12 +22,12 @@ This is a modern Next.js 15 application with TypeScript, focused on configuratio
 
 ### UI Components & Styling
 
-- **Tailwind CSS v4** with custom design system
-- **shadcn/ui** components in `src/components/ui/`
+- **Tailwind CSS v4** with Apple-inspired design system and liquid glass effects
+- **shadcn/ui** components enhanced with glass morphism and minimal animations
 - **Radix UI** primitives for accessibility
 - **next-themes** for dark/light mode with system preference
 - **Lucide React** for icons
-- **Framer Motion** for animations
+- **Apple Design Language** with rounded corners, subtle shadows, and smooth transitions
 
 ## Development Patterns
 
@@ -41,13 +41,34 @@ This is a modern Next.js 15 application with TypeScript, focused on configuratio
 
 ```tsx
 // Always use this utility function for className merging
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-// Button component pattern with cva variants
-const buttonVariants = cva("base-classes", {
-  variants: { variant: {...}, size: {...} },
-  defaultVariants: {...}
-})
+// Button component pattern with Apple-inspired variants
+const buttonVariants = cva("base-classes apple-scale", {
+  variants: {
+    variant: {
+      default: "bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl",
+      glass: "glass-card hover:bg-accent/20 hover:shadow-xl",
+    },
+    size: { default: "h-10 px-6", lg: "h-12 px-8 rounded-xl" },
+  },
+});
+```
+
+### Apple Design Patterns
+
+```tsx
+// Liquid glass card styling
+<Card className="glass-card apple-fade-in">
+
+// Apple-style input with icons
+<div className="relative">
+  <Icon className="absolute left-3.5 top-1/2 transform -translate-y-1/2" />
+  <Input className="pl-10 rounded-xl" />
+</div>
+
+// Smooth animations
+<div className="apple-bounce apple-scale">
 ```
 
 ### Auth Flow Patterns
@@ -96,13 +117,22 @@ Root layout wraps app with ThemeProvider for system/dark/light themes:
 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 ```
 
+Apple-inspired color variables support both light and dark modes with liquid glass effects.
+
 ### Font Configuration
 
-Uses Geist fonts (sans + mono) with CSS variables in layout.tsx
+Uses Geist fonts (sans + mono) with CSS variables and Apple-style font smoothing
 
 ### Auth Middleware
 
 All auth-protected routes automatically handled by middleware exporting Better Auth instance
+
+### Liquid Glass CSS Classes
+
+- `.glass` - Basic glass effect with backdrop blur
+- `.glass-card` - Enhanced glass card with gradients and shadows
+- `.apple-bounce`, `.apple-fade-in`, `.apple-scale` - Apple-style animations
+- Apple color palette variables: `--apple-blue`, `--apple-green`, etc.
 
 ## Important Notes
 
