@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/auth-client";
@@ -108,54 +107,65 @@ export default function Signin() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
-            {/* Apple-style animated background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"></div>
+        <div className="min-h-screen bg-white dark:bg-slate-950 relative overflow-hidden">
+            {/* Modern gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 dark:from-slate-950 dark:via-blue-950/20 dark:to-purple-950/10"></div>
 
-            {/* Floating orbs for depth */}
+            {/* Subtle grid pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+            {/* Modern floating elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/15 to-pink-400/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+                <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-32 left-20 w-80 h-80 bg-gradient-to-r from-purple-400/8 to-pink-400/8 rounded-full blur-3xl"></div>
             </div>
 
-            <div className="relative z-10 w-full max-w-md">
-                {/* Brand header */}
-                <div className="text-center mb-8 apple-fade-in">
-                    <div className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                        <Sparkles className="w-8 h-8 text-white" />
-                    </div>
-                    <h1 className="text-3xl font-bold text-foreground mb-2">Welcome Back</h1>
-                    <p className="text-muted-foreground">Sign in to your ConfigsHub account</p>
+            {/* Header with back button */}
+            <div className="relative z-10 w-full pt-8 pb-4">
+                <div className="max-w-md mx-auto px-6">
+                    <Link href="/" className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 mb-8">
+                        ← Back to home
+                    </Link>
                 </div>
+            </div>
 
-                <Card className="apple-bounce">
-                    <CardHeader className="text-center pb-4">
-                        <CardTitle className="text-xl font-semibold">Sign In</CardTitle>
-                        <CardDescription>Enter your credentials to access your account</CardDescription>
-                    </CardHeader>
+            <div className="relative z-10 flex items-center justify-center px-6 min-h-[calc(100vh-120px)]">
+                <div className="w-full max-w-md">
+                    {/* Brand header */}
+                    <div className="text-center mb-8">
+                        <div className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <Sparkles className="w-8 h-8 text-white" />
+                        </div>
+                        <h1 className="text-3xl font-bold mb-2">Welcome back</h1>
+                        <p className="text-gray-600 dark:text-gray-400">Sign in to your ConfigsHub account</p>
+                    </div>
 
-                    <CardContent className="space-y-6">
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 p-8">
+                        <div className="text-center mb-6">
+                            <h2 className="text-xl font-semibold mb-2">Sign in to your account</h2>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Enter your credentials to continue</p>
+                        </div>
+
                         {error && (
-                            <Alert variant="destructive" className="apple-fade-in">
+                            <Alert variant="destructive" className="mb-6">
                                 <AlertDescription>{error}</AlertDescription>
                             </Alert>
                         )}
 
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="email" className="text-sm font-medium">
+                                <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Email Address
                                 </Label>
                                 <div className="relative">
-                                    <Mail className="absolute left-3.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                    <Mail className="absolute left-3.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                                     <Input
                                         id="email"
                                         type="email"
                                         placeholder="Enter your email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="pl-10"
+                                        className="pl-10 h-12 border-gray-300 dark:border-gray-600 rounded-xl"
                                         disabled={isLoading || isGoogleLoading}
                                     />
                                 </div>
@@ -163,28 +173,28 @@ export default function Signin() {
 
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
-                                    <Label htmlFor="password" className="text-sm font-medium">
+                                    <Label htmlFor="password" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                         Password
                                     </Label>
-                                    <Link href="/auth/forgot-password" className="text-xs text-primary hover:underline">
+                                    <Link href="/auth/forgot-password" className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 hover:underline">
                                         Forgot password?
                                     </Link>
                                 </div>
                                 <div className="relative">
-                                    <Lock className="absolute left-3.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                    <Lock className="absolute left-3.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                                     <Input
                                         id="password"
                                         type={showPassword ? "text" : "password"}
                                         placeholder="Enter your password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="pl-10 pr-12"
+                                        className="pl-10 pr-12 h-12 border-gray-300 dark:border-gray-600 rounded-xl"
                                         disabled={isLoading || isGoogleLoading}
                                     />
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-3.5 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                                        className="absolute right-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                                         disabled={isLoading || isGoogleLoading}
                                     >
                                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -196,8 +206,7 @@ export default function Signin() {
                         <Button
                             onClick={handleSignin}
                             disabled={isLoading || isGoogleLoading || !email || !password}
-                            size="lg"
-                            className="w-full"
+                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-medium text-base shadow-lg hover:shadow-xl transition-all duration-200"
                         >
                             {isLoading ? (
                                 <>
@@ -209,19 +218,18 @@ export default function Signin() {
                             )}
                         </Button>
 
-                        <div className="relative">
+                        <div className="relative my-6">
                             <div className="absolute inset-0 flex items-center">
-                                <span className="w-full border-t border-border" />
+                                <span className="w-full border-t border-gray-300 dark:border-gray-600" />
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
-                                <span className="bg-card px-2 text-muted-foreground">or</span>
+                                <span className="bg-white dark:bg-slate-900 px-3 text-gray-500 font-medium">or</span>
                             </div>
                         </div>
 
                         <Button
                             variant="outline"
-                            size="lg"
-                            className="w-full"
+                            className="w-full h-12 border-gray-300 dark:border-gray-600 rounded-xl font-medium text-base hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
                             disabled={isLoading || isGoogleLoading}
                             onClick={handleGoogleSignin}
                         >
@@ -256,22 +264,20 @@ export default function Signin() {
                             )}
                         </Button>
 
-                        <div className="text-center text-sm">
-                            <span className="text-muted-foreground">Don't have an account? </span>
-                            <Link href="/auth/signup" className="text-primary hover:underline font-medium">
+                        <div className="text-center text-sm mt-6">
+                            <span className="text-gray-600 dark:text-gray-400">Don't have an account? </span>
+                            <Link href="/auth/signup" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline">
                                 Sign up
                             </Link>
                         </div>
-                    </CardContent>
-                </Card>
+                    </div>
 
-                {/* Footer */}
-                <div className="text-center mt-8 text-xs text-muted-foreground">
-                    Secure sign-in powered by ConfigsHub authentication.
+                    {/* Footer */}
+                    <div className="text-center mt-6 text-xs text-gray-500">
+                        © 2025 ConfigsHub. All rights reserved.
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
-
-
