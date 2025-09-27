@@ -1,10 +1,9 @@
 import { MongoClient } from "mongodb";
 
-if (!process.env.MONGODB_URI) {
-	throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+const uri = "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+export default async function connectToDatabase() {
+	if (!client.isConnected()) await client.connect();
+	return client.db("mydatabase");
 }
-
-const client = new MongoClient(process.env.MONGODB_URI);
-const db = client.db();
-
-export default db;
+ export {}
