@@ -4,15 +4,24 @@ import {
     Activity,
     BarChart3,
     Bell,
+    Code,
     Database,
+    FileCode,
     FileText,
+    Folder,
     GitBranch,
+    GitFork,
     Globe,
+    History,
+    Key,
     LogOut,
     Plus,
     Server,
     Settings,
     Shield,
+    Star,
+    Tags,
+    Terminal,
     TrendingUp,
     User,
 } from "lucide-react";
@@ -208,39 +217,39 @@ export default function Dashboard() {
                             </button>
                             <button
                                 type="button"
-                                onClick={() => setActiveTab("configs")}
+                                onClick={() => setActiveTab("projects")}
                                 className={cn(
                                     "text-sm font-medium transition-colors",
-                                    activeTab === "configs"
+                                    activeTab === "projects"
                                         ? "text-blue-600 dark:text-blue-400"
                                         : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
                                 )}
                             >
-                                Configs
+                                Projects
                             </button>
                             <button
                                 type="button"
-                                onClick={() => setActiveTab("environments")}
+                                onClick={() => setActiveTab("discover")}
                                 className={cn(
                                     "text-sm font-medium transition-colors",
-                                    activeTab === "environments"
+                                    activeTab === "discover"
                                         ? "text-blue-600 dark:text-blue-400"
                                         : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
                                 )}
                             >
-                                Environments
+                                Discover
                             </button>
                             <button
                                 type="button"
-                                onClick={() => setActiveTab("analytics")}
+                                onClick={() => setActiveTab("cli")}
                                 className={cn(
                                     "text-sm font-medium transition-colors",
-                                    activeTab === "analytics"
+                                    activeTab === "cli"
                                         ? "text-blue-600 dark:text-blue-400"
                                         : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
                                 )}
                             >
-                                Analytics
+                                CLI
                             </button>
                         </div>
 
@@ -287,11 +296,15 @@ export default function Dashboard() {
                                             </Link>
                                         </DropdownMenuItem>
                                         <DropdownMenuItem>
-                                            <GitBranch className="mr-2 h-4 w-4" />
+                                            <Folder className="mr-2 h-4 w-4" />
                                             <span>My Projects</span>
                                         </DropdownMenuItem>
                                         <DropdownMenuItem>
-                                            <FileText className="mr-2 h-4 w-4" />
+                                            <Star className="mr-2 h-4 w-4" />
+                                            <span>Starred Configs</span>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <Key className="mr-2 h-4 w-4" />
                                             <span>API Keys</span>
                                         </DropdownMenuItem>
                                     </DropdownMenuGroup>
@@ -339,7 +352,7 @@ export default function Dashboard() {
                                             Welcome back{user?.name ? `, ${user.name}` : ""}
                                         </h1>
                                         <p className="mt-3 text-gray-600 dark:text-gray-300 max-w-lg">
-                                            Manage your configurations with ease and precision. Your workspace is ready.
+                                            Store, manage, and share your configuration files in one place. Sync across devices with our CLI.
                                         </p>
 
                                         {/* Quick stat summary */}
@@ -347,71 +360,84 @@ export default function Dashboard() {
                                             <div className="flex items-center gap-2">
                                                 <div className="h-2 w-2 rounded-full bg-green-500"></div>
                                                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                                                    10k+ Configs
+                                                    3 Projects
                                                 </span>
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <div className="h-2 w-2 rounded-full bg-blue-500"></div>
                                                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                                                    3 Environments
+                                                    12 Config Groups
                                                 </span>
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <div className="h-2 w-2 rounded-full bg-purple-500"></div>
                                                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                                                    847 Deployments
+                                                    25 Config Files
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Create button with premium Apple-inspired styling */}
+                                    {/* Create button with enhanced modern styling */}
                                     <div className="flex-shrink-0">
                                         <Button
-                                            className="group relative flex items-center justify-center gap-2.5 w-full sm:w-auto rounded-xl 
-											bg-gradient-to-b from-white/90 to-white/70 dark:from-slate-800/90 dark:to-slate-900/70
-											border border-white/50 dark:border-slate-700/30 
-											backdrop-blur-lg shadow-sm
-											hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)]
-											py-3 px-6 
-											transition-all duration-300 ease-out
-											hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                                            className="group relative overflow-hidden flex items-center justify-center gap-3 w-full sm:w-auto 
+                                            rounded-full
+                                            bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
+                                            dark:from-blue-500 dark:via-indigo-500 dark:to-purple-500
+                                            text-white font-medium
+                                            shadow-md shadow-blue-500/20 dark:shadow-blue-600/20
+                                            hover:shadow-lg hover:shadow-indigo-500/30 dark:hover:shadow-indigo-600/30
+                                            py-3 px-8
+                                            transition-all duration-300 ease-out
+                                            hover:-translate-y-1 active:translate-y-0 active:scale-[0.98]"
                                         >
-                                            {/* Inner gradient container with transitions */}
-                                            <div className="absolute inset-0 rounded-xl overflow-hidden">
-                                                {/* Base soft gradient */}
-                                                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50/30 via-white/10 to-sky-50/30 dark:from-slate-800/50 dark:via-slate-800/10 dark:to-indigo-900/30"></div>
+                                            {/* Moving background effect */}
+                                            <div className="absolute top-0 left-0 w-full h-full">
+                                                {/* Animated gradient overlay */}
+                                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-white/20 to-indigo-600/0 
+                                                    translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
 
-                                                {/* Hover gradient overlay */}
-                                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-indigo-500/10 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
-
-                                                {/* Pressed state gradient */}
-                                                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-active:opacity-100 transition-opacity duration-200"></div>
-
-                                                {/* Spotlight effect on hover */}
-                                                <div className="absolute top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-white/10 to-purple-500/5 dark:from-blue-400/10 dark:via-slate-800/5 dark:to-purple-400/10"></div>
-                                                    <div className="absolute -inset-[100%] animate-spin-slow bg-[conic-gradient(from_0deg,transparent_0_55%,white/5_55%_60%,transparent_60%_100%)] dark:bg-[conic-gradient(from_0deg,transparent_0_55%,white/10_55%_60%,transparent_60%_100%)] blur-2xl"></div>
-                                                </div>
-
-                                                {/* Edge highlight effect */}
-                                                <div className="absolute inset-px rounded-[11px] bg-gradient-to-b from-white/80 to-white/20 dark:from-white/10 dark:to-transparent opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+                                                {/* Subtle noise texture */}
+                                                <div className="absolute inset-0 opacity-5 
+                                                    [background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]"></div>
                                             </div>
 
-                                            {/* Icon with premium styling */}
-                                            <div className="relative z-10 flex items-center justify-center h-7 w-7 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 shadow-inner shadow-white/10 mr-1 group-hover:scale-110 transition-all duration-300">
-                                                {/* Inner glow effect */}
-                                                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-400/80 to-transparent opacity-0 group-hover:opacity-100 blur-sm transition-all duration-300"></div>
-                                                {/* Pulsing ring */}
-                                                <div className="absolute -inset-1 rounded-full bg-blue-500/20 opacity-0 group-hover:animate-pulse-subtle group-hover:opacity-100 transition-all duration-300"></div>
-                                                {/* Icon */}
-                                                <Plus className="h-3.5 w-3.5 text-white relative z-10 stroke-[2.5]" />
+                                            {/* Glowing circle bursts */}
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full 
+                                                bg-white/10 opacity-0 group-hover:opacity-100 group-hover:animate-ping-slow"></div>
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full 
+                                                bg-white/5 opacity-0 group-hover:opacity-100 group-hover:animate-ping-slow animation-delay-200"></div>
+
+                                            {/* Icon with enhanced styling */}
+                                            <div className="relative flex items-center justify-center h-7 w-7 rounded-full 
+                                                bg-white/20 backdrop-blur-sm
+                                                shadow-inner shadow-white/10 
+                                                transition-all duration-300
+                                                group-hover:scale-110 group-hover:bg-white/30">
+                                                <Plus className="h-4 w-4 text-white stroke-[2.5]" />
                                             </div>
 
-                                            {/* Text with sophisticated gradient effect */}
-                                            <span className="relative z-10 font-medium text-sm bg-gradient-to-r from-gray-800 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-indigo-600 transition-all duration-300">
-                                                New Config
+                                            {/* Text with dynamic effects */}
+                                            <span className="relative font-medium text-sm text-white transition-all duration-300">
+                                                Create New Project
                                             </span>
+
+                                            {/* Directional arrow indicator */}
+                                            <svg
+                                                className="h-4 w-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                aria-labelledby="arrowRightTitle"
+                                            >
+                                                <title id="arrowRightTitle">Arrow right</title>
+                                                <path d="M3.33337 8H12.6667M12.6667 8L8.00004 3.33333M12.6667 8L8.00004 12.6667"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round" />
+                                            </svg>
                                         </Button>
                                     </div>
                                 </div>
@@ -427,16 +453,16 @@ export default function Dashboard() {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                        Total Configs
+                                        Projects
                                     </p>
-                                    <p className="mt-2 text-3xl font-bold">10k+</p>
+                                    <p className="mt-2 text-3xl font-bold">3</p>
                                     <div className="mt-2 flex items-center text-sm text-green-500">
-                                        <TrendingUp className="mr-1 h-3 w-3" />
-                                        <span>12% increase</span>
+                                        <Folder className="mr-1 h-3 w-3" />
+                                        <span>1 Private, 2 Public</span>
                                     </div>
                                 </div>
                                 <div className="h-12 w-12 rounded-full bg-blue-100 p-2 text-blue-600 transition-transform duration-300 group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400">
-                                    <FileText className="h-full w-full" />
+                                    <Folder className="h-full w-full" />
                                 </div>
                             </div>
                         </div>
@@ -444,15 +470,15 @@ export default function Dashboard() {
                         <div className="group overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Environments</p>
-                                    <p className="mt-2 text-3xl font-bold">3</p>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Config Groups</p>
+                                    <p className="mt-2 text-3xl font-bold">12</p>
                                     <div className="mt-2 flex items-center text-sm text-blue-500">
-                                        <Globe className="mr-1 h-3 w-3" />
-                                        <span>Prod, Staging, Dev</span>
+                                        <Code className="mr-1 h-3 w-3" />
+                                        <span>VSCode, Neovim, Zsh...</span>
                                     </div>
                                 </div>
                                 <div className="h-12 w-12 rounded-full bg-green-100 p-2 text-green-600 transition-transform duration-300 group-hover:scale-110 dark:bg-green-900/30 dark:text-green-400">
-                                    <Server className="h-full w-full" />
+                                    <Code className="h-full w-full" />
                                 </div>
                             </div>
                         </div>
@@ -460,15 +486,15 @@ export default function Dashboard() {
                         <div className="group overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Deployments</p>
-                                    <p className="mt-2 text-3xl font-bold">847</p>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Config Files</p>
+                                    <p className="mt-2 text-3xl font-bold">25</p>
                                     <div className="mt-2 flex items-center text-sm text-purple-500">
-                                        <Activity className="mr-1 h-3 w-3" />
-                                        <span>This month</span>
+                                        <FileCode className="mr-1 h-3 w-3" />
+                                        <span>8 New this week</span>
                                     </div>
                                 </div>
                                 <div className="h-12 w-12 rounded-full bg-purple-100 p-2 text-purple-600 transition-transform duration-300 group-hover:scale-110 dark:bg-purple-900/30 dark:text-purple-400">
-                                    <Activity className="h-full w-full" />
+                                    <FileCode className="h-full w-full" />
                                 </div>
                             </div>
                         </div>
@@ -476,15 +502,15 @@ export default function Dashboard() {
                         <div className="group overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">API Usage</p>
-                                    <p className="mt-2 text-3xl font-bold">1.2M</p>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Storage Used</p>
+                                    <p className="mt-2 text-3xl font-bold">14MB</p>
                                     <div className="mt-2 flex items-center text-sm text-amber-500">
-                                        <BarChart3 className="mr-1 h-3 w-3" />
-                                        <span>API Calls</span>
+                                        <Database className="mr-1 h-3 w-3" />
+                                        <span>50MB Limit (Free)</span>
                                     </div>
                                 </div>
                                 <div className="h-12 w-12 rounded-full bg-amber-100 p-2 text-amber-600 transition-transform duration-300 group-hover:scale-110 dark:bg-amber-900/30 dark:text-amber-400">
-                                    <BarChart3 className="h-full w-full" />
+                                    <Database className="h-full w-full" />
                                 </div>
                             </div>
                         </div>
@@ -502,72 +528,277 @@ export default function Dashboard() {
 
                     <div className="overflow-hidden rounded-2xl bg-white shadow-md dark:bg-slate-900">
                         <div className="divide-y divide-gray-200 dark:divide-gray-800">
-                            {[1, 2, 3, 4, 5].map((i) => (
-                                <div
-                                    key={i}
-                                    className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-slate-800/50"
-                                >
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
-                                        <GitBranch className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <p className="font-medium">
-                                            Config <span className="font-semibold">api-keys.json</span> was updated
-                                        </p>
-                                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                                            New environment variable added by Alex Johnson
-                                        </p>
-                                    </div>
-                                    <div className="text-right text-sm text-gray-500 dark:text-gray-400">
-                                        <p>2h ago</p>
-                                    </div>
+                            <div className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-slate-800/50">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
+                                    <History className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                                 </div>
-                            ))}
+                                <div className="flex-1">
+                                    <p className="font-medium">
+                                        New version of <span className="font-semibold">settings.json</span> created
+                                    </p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        In VSCode group of My Dev Setup project
+                                    </p>
+                                </div>
+                                <div className="text-right text-sm text-gray-500 dark:text-gray-400">
+                                    <p>30m ago</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-slate-800/50">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+                                    <GitFork className="h-5 w-5 text-green-600 dark:text-green-400" />
+                                </div>
+                                <div className="flex-1">
+                                    <p className="font-medium">
+                                        You forked <span className="font-semibold">React Dev Setup</span> project
+                                    </p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        From sarah.dev/react-configs
+                                    </p>
+                                </div>
+                                <div className="text-right text-sm text-gray-500 dark:text-gray-400">
+                                    <p>2h ago</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-slate-800/50">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30">
+                                    <Terminal className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                                </div>
+                                <div className="flex-1">
+                                    <p className="font-medium">
+                                        CLI pull completed for <span className="font-semibold">Neovim</span> configs
+                                    </p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        5 files synced to local machine
+                                    </p>
+                                </div>
+                                <div className="text-right text-sm text-gray-500 dark:text-gray-400">
+                                    <p>5h ago</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-slate-800/50">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
+                                    <FileCode className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                                </div>
+                                <div className="flex-1">
+                                    <p className="font-medium">
+                                        Added <span className="font-semibold">.zshrc</span> to Terminal group
+                                    </p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        In Personal Dotfiles project
+                                    </p>
+                                </div>
+                                <div className="text-right text-sm text-gray-500 dark:text-gray-400">
+                                    <p>Yesterday</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-slate-800/50">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/30">
+                                    <Folder className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                                </div>
+                                <div className="flex-1">
+                                    <p className="font-medium">
+                                        Created <span className="font-semibold">Backend Dev</span> project
+                                    </p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        New private project with 2 config groups
+                                    </p>
+                                </div>
+                                <div className="text-right text-sm text-gray-500 dark:text-gray-400">
+                                    <p>2 days ago</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Popular Configurations Section */}
-                <section>
+                <section className="mb-12">
                     <div className="mb-6 flex items-center justify-between">
-                        <h2 className="text-xl font-semibold">Popular Configurations</h2>
+                        <h2 className="text-xl font-semibold">Your Projects</h2>
                         <Button variant="outline" size="sm" className="rounded-full text-sm">
                             View All
                         </Button>
                     </div>
 
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {[
-                            { id: "api-settings", name: "API Settings", env: "Production", icon: "Server" },
-                            { id: "db-config", name: "Database Config", env: "Staging", icon: "Database" },
-                            { id: "auth-keys", name: "Auth Keys", env: "Development", icon: "Shield" },
-                        ].map((config) => (
-                            <div
-                                key={config.id}
-                                className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20"
-                            >
-                                <div className="mb-4 flex items-center justify-between">
-                                    <div className="h-10 w-10 rounded-full bg-blue-100 p-2 text-blue-600 transition-transform duration-300 group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400">
-                                        {config.icon === "Server" && <Server className="h-full w-full" />}
-                                        {config.icon === "Database" && <Database className="h-full w-full" />}
-                                        {config.icon === "Shield" && <Shield className="h-full w-full" />}
-                                    </div>
-                                    <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
-                                        {config.env}
+                        <div
+                            className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20"
+                        >
+                            <div className="mb-4 flex items-center justify-between">
+                                <div className="h-10 w-10 rounded-full bg-blue-100 p-2 text-blue-600 transition-transform duration-300 group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400">
+                                    <Code className="h-full w-full" />
+                                </div>
+                                <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                                    Public
+                                </span>
+                            </div>
+                            <h3 className="mb-1 font-medium">My Dev Setup</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">4 Config Groups • Updated today</p>
+                            <div className="mt-4">
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                                        VSCode
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-purple-100 px-2 py-1 text-xs text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
+                                        Neovim
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                        Terminal
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                                        +1
                                     </span>
                                 </div>
-                                <h3 className="mb-1 font-medium">{config.name}</h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">Last updated 2 days ago</p>
-                                <div className="mt-4 flex items-center gap-2">
-                                    <div className="flex -space-x-1">
-                                        <div className="h-6 w-6 rounded-full border-2 border-white bg-blue-500 dark:border-slate-900"></div>
-                                        <div className="h-6 w-6 rounded-full border-2 border-white bg-green-500 dark:border-slate-900"></div>
-                                        <div className="h-6 w-6 rounded-full border-2 border-white bg-purple-500 dark:border-slate-900"></div>
-                                    </div>
-                                    <span className="text-xs text-gray-500 dark:text-gray-400">+2 more</span>
+                            </div>
+                        </div>
+
+                        <div
+                            className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20"
+                        >
+                            <div className="mb-4 flex items-center justify-between">
+                                <div className="h-10 w-10 rounded-full bg-purple-100 p-2 text-purple-600 transition-transform duration-300 group-hover:scale-110 dark:bg-purple-900/30 dark:text-purple-400">
+                                    <Database className="h-full w-full" />
+                                </div>
+                                <span className="rounded-full bg-amber-100 px-2 py-1 text-xs font-medium text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
+                                    Private
+                                </span>
+                            </div>
+                            <h3 className="mb-1 font-medium">Backend Dev</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">2 Config Groups • Updated 2 days ago</p>
+                            <div className="mt-4">
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="inline-flex rounded-full bg-amber-100 px-2 py-1 text-xs text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+                                        Docker
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-indigo-100 px-2 py-1 text-xs text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400">
+                                        PostgreSQL
+                                    </span>
                                 </div>
                             </div>
-                        ))}
+                        </div>
+
+                        <div
+                            className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20"
+                        >
+                            <div className="mb-4 flex items-center justify-between">
+                                <div className="h-10 w-10 rounded-full bg-green-100 p-2 text-green-600 transition-transform duration-300 group-hover:scale-110 dark:bg-green-900/30 dark:text-green-400">
+                                    <GitFork className="h-full w-full" />
+                                </div>
+                                <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                                    Public
+                                </span>
+                            </div>
+                            <h3 className="mb-1 font-medium">React Dev Setup</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">3 Config Groups • Forked from sarah.dev</p>
+                            <div className="mt-4">
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                                        ESLint
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-purple-100 px-2 py-1 text-xs text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
+                                        Prettier
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                        VSCode
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Discover Section */}
+                <section>
+                    <div className="mb-6 flex items-center justify-between">
+                        <h2 className="text-xl font-semibold">Discover Popular Configs</h2>
+                        <Button variant="outline" size="sm" className="rounded-full text-sm">
+                            Browse All
+                        </Button>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        <div
+                            className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20"
+                        >
+                            <div className="mb-4 flex items-center justify-between">
+                                <div className="h-10 w-10 rounded-full bg-blue-100 p-2 text-blue-600 transition-transform duration-300 group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400">
+                                    <Code className="h-full w-full" />
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                                    <span className="text-sm font-medium">148</span>
+                                </div>
+                            </div>
+                            <h3 className="mb-1 font-medium">Ultimate VSCode Setup</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">By VSCodeNinja</p>
+                            <div className="mt-4">
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                                        Frontend
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-purple-100 px-2 py-1 text-xs text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
+                                        React
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20"
+                        >
+                            <div className="mb-4 flex items-center justify-between">
+                                <div className="h-10 w-10 rounded-full bg-green-100 p-2 text-green-600 transition-transform duration-300 group-hover:scale-110 dark:bg-green-900/30 dark:text-green-400">
+                                    <Terminal className="h-full w-full" />
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                                    <span className="text-sm font-medium">89</span>
+                                </div>
+                            </div>
+                            <h3 className="mb-1 font-medium">Productivity Zsh Setup</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">By terminal_pro</p>
+                            <div className="mt-4">
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="inline-flex rounded-full bg-amber-100 px-2 py-1 text-xs text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+                                        Shell
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                        Productivity
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg dark:bg-slate-900 dark:shadow-slate-800/20"
+                        >
+                            <div className="mb-4 flex items-center justify-between">
+                                <div className="h-10 w-10 rounded-full bg-purple-100 p-2 text-purple-600 transition-transform duration-300 group-hover:scale-110 dark:bg-purple-900/30 dark:text-purple-400">
+                                    <FileCode className="h-full w-full" />
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                                    <span className="text-sm font-medium">76</span>
+                                </div>
+                            </div>
+                            <h3 className="mb-1 font-medium">Neovim for Go Development</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">By gopher_vim</p>
+                            <div className="mt-4">
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="inline-flex rounded-full bg-indigo-100 px-2 py-1 text-xs text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400">
+                                        Golang
+                                    </span>
+                                    <span className="inline-flex rounded-full bg-purple-100 px-2 py-1 text-xs text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
+                                        Neovim
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </main>
