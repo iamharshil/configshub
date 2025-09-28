@@ -6,7 +6,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { authClient } from "@/lib/auth-client";
+// import { authClient } from "@/lib/auth-client";
 
 export default function Signin() {
     const [email, setEmail] = useState("");
@@ -24,19 +24,19 @@ export default function Signin() {
 
         const checkAuth = async () => {
             setIsCheckingAuth(true);
-            try {
-                const session = await authClient.getSession();
-                if (session?.data?.user) {
-                    // User is already logged in, redirect to dashboard
-                    window.location.href = "/dashboard";
-                    return;
-                }
-            } catch (_error) {
-                // User is not logged in, which is expected for signin page
-                console.log("No active session, continuing with signin");
-            } finally {
-                setIsCheckingAuth(false);
-            }
+            // try {
+            //     const session = await authClient.getSession();
+            //     if (session?.data?.user) {
+            //         // User is already logged in, redirect to dashboard
+            //         window.location.href = "/dashboard";
+            //         return;
+            //     }
+            // } catch (_error) {
+            //     // User is not logged in, which is expected for signin page
+            //     console.log("No active session, continuing with signin");
+            // } finally {
+            //     setIsCheckingAuth(false);
+            // }
         };
 
         checkAuth();
@@ -51,18 +51,18 @@ export default function Signin() {
         setIsLoading(true);
         setError("");
 
-        const { data, error: authError } = await authClient.signIn.email({
-            email,
-            password,
-        });
+        // const { data, error: authError } = await authClient.signIn.email({
+        //     email,
+        //     password,
+        // });
 
-        if (authError) {
-            setError(authError.message || "An error occurred");
-        } else {
-            console.log("Signed in:", data.user);
-            // Redirect to dashboard or handle success
-            window.location.href = "/";
-        }
+        // if (authError) {
+        //     setError(authError.message || "An error occurred");
+        // } else {
+        //     console.log("Signed in:", data.user);
+        //     // Redirect to dashboard or handle success
+        //     window.location.href = "/";
+        // }
 
         setIsLoading(false);
     };
@@ -71,15 +71,15 @@ export default function Signin() {
         setIsGoogleLoading(true);
         setError("");
 
-        try {
-            await authClient.signIn.social({
-                provider: "google",
-                callbackURL: window.location.origin + "/dashboard",
-            });
-        } catch {
-            setError("Failed to sign in with Google");
-            setIsGoogleLoading(false);
-        }
+        // try {
+        //     await authClient.signIn.social({
+        //         provider: "google",
+        //         callbackURL: window.location.origin + "/dashboard",
+        //     });
+        // } catch {
+        //     setError("Failed to sign in with Google");
+        //     setIsGoogleLoading(false);
+        // }
     };
 
     // Prevent hydration mismatch by showing loading on client side only

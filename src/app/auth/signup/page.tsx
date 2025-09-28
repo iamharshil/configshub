@@ -6,7 +6,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { authClient } from "@/lib/auth-client";
+// import { authClient } from "@/lib/auth-client";
 
 export default function Signup() {
     const [email, setEmail] = useState("");
@@ -24,20 +24,20 @@ export default function Signup() {
         setIsMounted(true);
 
         const checkAuth = async () => {
-            setIsCheckingAuth(true);
-            try {
-                const session = await authClient.getSession();
-                if (session?.data?.user) {
-                    // User is already logged in, redirect to dashboard
-                    window.location.href = "/dashboard";
-                    return;
-                }
-            } catch (_error) {
-                // User is not logged in, which is expected for signup page
-                console.log("No active session, continuing with signup");
-            } finally {
-                setIsCheckingAuth(false);
-            }
+            // setIsCheckingAuth(true);
+            // try {
+            //     const session = await authClient.getSession();
+            //     if (session?.data?.user) {
+            //         // User is already logged in, redirect to dashboard
+            //         window.location.href = "/dashboard";
+            //         return;
+            //     }
+            // } catch (_error) {
+            //     // User is not logged in, which is expected for signup page
+            //     console.log("No active session, continuing with signup");
+            // } finally {
+            //     setIsCheckingAuth(false);
+            // }
         };
 
         checkAuth();
@@ -52,19 +52,19 @@ export default function Signup() {
         setIsLoading(true);
         setError("");
 
-        const { data, error: authError } = await authClient.signUp.email({
-            email,
-            password,
-            name,
-        });
+        // const { data, error: authError } = await authClient.signUp.email({
+        //     email,
+        //     password,
+        //     name,
+        // });
 
-        if (authError) {
-            setError(authError.message || "An error occurred");
-        } else {
-            console.log("Signed up:", data.user);
-            // Redirect directly to dashboard after successful registration
-            window.location.href = "/dashboard";
-        }
+        // if (authError) {
+        //     setError(authError.message || "An error occurred");
+        // } else {
+        //     console.log("Signed up:", data.user);
+        //     // Redirect directly to dashboard after successful registration
+        //     window.location.href = "/dashboard";
+        // }
 
         setIsLoading(false);
     };
@@ -73,15 +73,15 @@ export default function Signup() {
         setIsGoogleLoading(true);
         setError("");
 
-        try {
-            await authClient.signIn.social({
-                provider: "google",
-                callbackURL: window.location.origin + "/dashboard",
-            });
-        } catch {
-            setError("Failed to sign up with Google");
-            setIsGoogleLoading(false);
-        }
+        // try {
+        // await authClient.signIn.social({
+        //     provider: "google",
+        //     callbackURL: window.location.origin + "/dashboard",
+        // });
+        // } catch {
+        //     setError("Failed to sign up with Google");
+        //     setIsGoogleLoading(false);
+        // }
     };
 
     // Prevent hydration mismatch by showing loading on client side only

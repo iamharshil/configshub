@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
+// import { authClient } from "@/lib/auth-client";
 
 export default function Dashboard() {
     const [user, setUser] = useState<{ name?: string; email: string; emailVerified?: boolean } | null>(null);
@@ -28,32 +28,32 @@ export default function Dashboard() {
 
     useEffect(() => {
         const getUser = async () => {
-            try {
-                const session = await authClient.getSession();
-                if (session?.data?.user) {
-                    setUser(session.data.user);
-                } else {
-                    // Redirect to signin if not authenticated
-                    window.location.href = "/auth/signin";
-                }
-            } catch (error) {
-                console.error("Error getting session:", error);
-                window.location.href = "/auth/signin";
-            } finally {
-                setIsLoading(false);
-            }
+            // try {
+            //     const session = await authClient.getSession();
+            //     if (session?.data?.user) {
+            //         setUser(session.data.user);
+            //     } else {
+            //         // Redirect to signin if not authenticated
+            //         window.location.href = "/auth/signin";
+            //     }
+            // } catch (error) {
+            //     console.error("Error getting session:", error);
+            //     window.location.href = "/auth/signin";
+            // } finally {
+            //     setIsLoading(false);
+            // }
         };
 
         getUser();
     }, []);
 
     const handleSignOut = async () => {
-        try {
-            await authClient.signOut();
-            window.location.href = "/";
-        } catch (error) {
-            console.error("Error signing out:", error);
-        }
+        // try {
+        //     await authClient.signOut();
+        //     window.location.href = "/";
+        // } catch (error) {
+        //     console.error("Error signing out:", error);
+        // }
     };
 
     if (isLoading) {
