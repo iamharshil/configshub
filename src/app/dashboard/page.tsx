@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/lib/supabase-client";
+import { supabase } from "@/lib/supabase/client";
 
 function extractFullName(meta: unknown): string | undefined {
 	if (meta && typeof meta === "object" && "full_name" in meta) {
