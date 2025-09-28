@@ -21,7 +21,6 @@ export default function Home() {
 	return (
 		<div className="min-h-screen bg-white dark:bg-slate-950">
 			<LandingNav />
-
 			{/* Hero Section */}
 			<section className="relative pt-24 pb-16 px-4 sm:pt-32 sm:pb-20 sm:px-6 lg:px-8 overflow-hidden">
 				{/* Background Grid */}
@@ -40,7 +39,6 @@ export default function Home() {
 						<span className="xs:hidden">10,000+ active configs</span>
 						<ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
 					</div>
-
 					{/* Main Headline */}
 					<h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 sm:mb-6 relative">
 						Ship faster with
@@ -55,13 +53,11 @@ export default function Home() {
 							</span>
 						</span>
 					</h1>
-
 					{/* Subheadline */}
 					<p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
 						The modern configuration management platform that scales with your startup. Deploy faster, break
 						less, and focus on building what matters.
 					</p>
-
 					{/* CTA Buttons */}
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 px-4">
 						<Link href="/auth/signup" className="w-full sm:w-auto">
@@ -73,7 +69,8 @@ export default function Home() {
 								<ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
 							</Button>
 						</Link>
-					</div>					{/* Social Proof */}
+					</div>{" "}
+					{/* Social Proof */}
 					<div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm text-gray-500 dark:text-gray-400 px-4">
 						<div className="flex items-center gap-2">
 							<div className="flex -space-x-2">
@@ -94,9 +91,11 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
 			{/* About (Project) Section */}
-			<section className="py-20 px-4 sm:py-24 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:from-slate-900/50 dark:via-blue-950/20 dark:to-purple-950/20" id="about-project">
+			<section
+				className="py-20 px-4 sm:py-24 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:from-slate-900/50 dark:via-blue-950/20 dark:to-purple-950/20"
+				id="about-project"
+			>
 				<div className="max-w-7xl mx-auto">
 					{/* Header */}
 					<div className="text-center mb-16 sm:mb-20">
@@ -108,8 +107,9 @@ export default function Home() {
 							Meet ConfigsHub
 						</h2>
 						<p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-							Where cutting-edge technology meets intuitive design. Born from the need for better configuration management,
-							crafted with the latest tools and an obsession for developer experience.
+							Where cutting-edge technology meets intuitive design. Born from the need for better
+							configuration management, crafted with the latest tools and an obsession for developer
+							experience.
 						</p>
 					</div>
 
@@ -136,15 +136,24 @@ export default function Home() {
 					{/* Mission Statement */}
 					<div className="liquid-glass rounded-3xl p-8 sm:p-12 mb-16 sm:mb-20">
 						<div className="max-w-4xl mx-auto text-center">
-							<h3 className="text-2xl sm:text-3xl font-bold mb-6 text-slate-900 dark:text-white">Our Mission</h3>
+							<h3 className="text-2xl sm:text-3xl font-bold mb-6 text-slate-900 dark:text-white">
+								Our Mission
+							</h3>
 							<p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
 								To eliminate configuration chaos and empower developers to ship faster with confidence.
-								We believe configuration management should be as elegant and reliable as the applications it powers.
+								We believe configuration management should be as elegant and reliable as the
+								applications it powers.
 							</p>
 							<div className="flex flex-wrap justify-center gap-4 text-sm font-medium">
-								<span className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">Zero Downtime</span>
-								<span className="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full">Enterprise Security</span>
-								<span className="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">Developer First</span>
+								<span className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">
+									Zero Downtime
+								</span>
+								<span className="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full">
+									Enterprise Security
+								</span>
+								<span className="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">
+									Developer First
+								</span>
 							</div>
 						</div>
 					</div>
@@ -225,8 +234,6 @@ export default function Home() {
 					</div> */}
 				</div>
 			</section>
-
-
 			{/* Tech Stack Showcase */}
 			{/* <section className="py-12 sm:py-16 relative overflow-hidden bg-gradient-to-r from-blue-50 via-slate-50 to-purple-50 dark:from-blue-950/40 dark:via-slate-950/60 dark:to-purple-950/40">
 				<div className="absolute inset-0 opacity-10">
@@ -259,13 +266,14 @@ export default function Home() {
 					</div>
 				</div>
 			</section> */}
-
 			{/* Problem/Solution Section */}
 			<section className="py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
 				<div className="max-w-6xl mx-auto">
 					<div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 						<div>
-							<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">Stop wrestling with configuration chaos</h2>
+							<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
+								Stop wrestling with configuration chaos
+							</h2>
 							<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
 								Your startup deserves better than scattered .env files, manual deployments, and
 								configuration nightmares that slow down your team.
@@ -328,12 +336,13 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
 			{/* Features Section */}
 			<section className="py-16 px-4 sm:py-20 sm:px-6 lg:px-8 bg-gray-50 dark:bg-slate-900/50" id="features">
 				<div className="max-w-6xl mx-auto">
 					<div className="text-center mb-12 sm:mb-16">
-						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">Built for modern startups</h2>
+						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+							Built for modern startups
+						</h2>
 						<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
 							Everything you need to manage configurations at scale, without the enterprise complexity
 						</p>
@@ -359,7 +368,9 @@ export default function Home() {
 							<p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
 								AES-256 encryption, role-based access, and audit logs. SOC 2 compliant from day one
 							</p>
-							<div className="text-xs sm:text-sm text-green-600 font-medium">✓ Zero security incidents</div>
+							<div className="text-xs sm:text-sm text-green-600 font-medium">
+								✓ Zero security incidents
+							</div>
 						</div>
 
 						<div className="liquid-glass rounded-2xl p-6 sm:p-8">
@@ -408,12 +419,13 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
 			{/* Pricing Section */}
 			<section className="py-16 px-4 sm:py-20 sm:px-6 lg:px-8" id="pricing">
 				<div className="max-w-6xl mx-auto">
 					<div className="text-center mb-12 sm:mb-16">
-						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">Simple, transparent pricing</h2>
+						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+							Simple, transparent pricing
+						</h2>
 						<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
 							Start free, scale as you grow. No hidden fees, no surprises.
 						</p>
@@ -426,9 +438,13 @@ export default function Home() {
 								<h3 className="text-xl sm:text-2xl font-bold mb-2">Starter</h3>
 								<div className="flex items-baseline gap-1">
 									<span className="text-3xl sm:text-4xl font-bold">$0</span>
-									<span className="text-sm sm:text-base text-gray-600 dark:text-gray-400">/month</span>
+									<span className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+										/month
+									</span>
 								</div>
-								<p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">Perfect for side projects</p>
+								<p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">
+									Perfect for side projects
+								</p>
 							</div>
 							<ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
 								<li className="flex items-center gap-2 sm:gap-3">
@@ -470,9 +486,13 @@ export default function Home() {
 								</div>
 								<div className="flex items-baseline gap-1">
 									<span className="text-3xl sm:text-4xl font-bold">$10</span>
-									<span className="text-sm sm:text-base text-gray-600 dark:text-gray-400">/month</span>
+									<span className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+										/month
+									</span>
 								</div>
-								<p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">For growing startups</p>
+								<p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">
+									For growing startups
+								</p>
 							</div>
 							<ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
 								<li className="flex items-center gap-2 sm:gap-3">
@@ -524,7 +544,9 @@ export default function Home() {
 									<div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center">
 										<span className="text-2xl">☕</span>
 									</div>
-									<p className="text-gray-600 dark:text-gray-300">Support the development of ConfigsHub</p>
+									<p className="text-gray-600 dark:text-gray-300">
+										Support the development of ConfigsHub
+									</p>
 								</div>
 							</div>
 
@@ -536,7 +558,9 @@ export default function Home() {
 								<ul className="space-y-3">
 									<li className="flex items-center gap-2 sm:gap-3">
 										<Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
-										<span className="text-sm sm:text-base">Keep ConfigsHub free for small teams</span>
+										<span className="text-sm sm:text-base">
+											Keep ConfigsHub free for small teams
+										</span>
 									</li>
 									<li className="flex items-center gap-2 sm:gap-3">
 										<Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
@@ -560,7 +584,6 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
 			{/* About Us Section */}
 			<section className="py-16 px-4 sm:py-20 sm:px-6 lg:px-8" id="about">
 				<div className="max-w-6xl mx-auto">
@@ -575,8 +598,9 @@ export default function Home() {
 								Why developers choose ConfigsHub
 							</h2>
 							<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-								We understand the pain of managing configurations across multiple environments.
-								That's why we built ConfigsHub to be the configuration management platform we always wished we had.
+								We understand the pain of managing configurations across multiple environments. That's
+								why we built ConfigsHub to be the configuration management platform we always wished we
+								had.
 							</p>
 
 							<div className="space-y-6">
@@ -585,9 +609,12 @@ export default function Home() {
 										<Zap className="w-4 h-4 text-blue-600" />
 									</div>
 									<div>
-										<h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-white">Lightning Fast Setup</h3>
+										<h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-white">
+											Lightning Fast Setup
+										</h3>
 										<p className="text-gray-600 dark:text-gray-300">
-											Get started in under 5 minutes. Import your existing configs, set up environments, and you're ready to deploy.
+											Get started in under 5 minutes. Import your existing configs, set up
+											environments, and you're ready to deploy.
 										</p>
 									</div>
 								</div>
@@ -597,9 +624,12 @@ export default function Home() {
 										<Shield className="w-4 h-4 text-green-600" />
 									</div>
 									<div>
-										<h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-white">Security First</h3>
+										<h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-white">
+											Security First
+										</h3>
 										<p className="text-gray-600 dark:text-gray-300">
-											Your secrets are encrypted at rest and in transit. Role-based access controls ensure only the right people see sensitive data.
+											Your secrets are encrypted at rest and in transit. Role-based access
+											controls ensure only the right people see sensitive data.
 										</p>
 									</div>
 								</div>
@@ -609,9 +639,12 @@ export default function Home() {
 										<GitBranch className="w-4 h-4 text-purple-600" />
 									</div>
 									<div>
-										<h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-white">Version Control</h3>
+										<h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-white">
+											Version Control
+										</h3>
 										<p className="text-gray-600 dark:text-gray-300">
-											Every change is tracked. Roll back to any previous version instantly when something goes wrong.
+											Every change is tracked. Roll back to any previous version instantly when
+											something goes wrong.
 										</p>
 									</div>
 								</div>
@@ -619,7 +652,10 @@ export default function Home() {
 
 							<div className="mt-8">
 								<Link href="/auth/signup">
-									<Button size="lg" className="px-8 py-4 h-auto text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+									<Button
+										size="lg"
+										className="px-8 py-4 h-auto text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+									>
 										Try ConfigsHub free
 										<ArrowRight className="ml-2 h-5 w-5" />
 									</Button>
@@ -631,14 +667,18 @@ export default function Home() {
 						<div className="relative">
 							<div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 rounded-3xl p-8 sm:p-10 border border-blue-200/50 dark:border-blue-800/50">
 								<div className="mb-8">
-									<h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Our Story</h3>
+									<h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
+										Our Story
+									</h3>
 									<p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-										ConfigsHub was born from frustration. After countless late-night debugging sessions caused by configuration mismatches,
-										we knew there had to be a better way.
+										ConfigsHub was born from frustration. After countless late-night debugging
+										sessions caused by configuration mismatches, we knew there had to be a better
+										way.
 									</p>
 									<p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-										Today, we're proud to serve thousands of developers who trust us with their most critical configurations.
-										From solo developers to enterprise teams, ConfigsHub scales with your needs.
+										Today, we're proud to serve thousands of developers who trust us with their most
+										critical configurations. From solo developers to enterprise teams, ConfigsHub
+										scales with your needs.
 									</p>
 								</div>
 
@@ -681,12 +721,13 @@ export default function Home() {
 					</div> */}
 				</div>
 			</section>
-
 			{/* Social Proof / Testimonials */}
 			<section className="py-16 px-4 sm:py-20 sm:px-6 lg:px-8 bg-gray-50 dark:bg-slate-900/50">
 				<div className="max-w-6xl mx-auto">
 					<div className="text-center mb-12 sm:mb-16">
-						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">Loved by developers worldwide</h2>
+						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+							Loved by developers worldwide
+						</h2>
 						<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
 							See what teams are saying about ConfigsHub
 						</p>
@@ -766,7 +807,6 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
 			{/* Final CTA Section */}
 			<section className="py-16 px-4 sm:py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900 via-purple-900 to-slate-900 text-white relative overflow-hidden">
 				<div className="absolute inset-0 opacity-20">
@@ -775,10 +815,12 @@ export default function Home() {
 				</div>
 
 				<div className="max-w-4xl mx-auto text-center relative">
-					<h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Transform your config chaos</h2>
+					<h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+						Transform your config chaos
+					</h2>
 					<p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto">
-						Stop fighting configuration drift and security vulnerabilities. Join the developers who've already
-						eliminated config chaos with ConfigsHub.
+						Stop fighting configuration drift and security vulnerabilities. Join the developers who've
+						already eliminated config chaos with ConfigsHub.
 					</p>
 
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
@@ -823,7 +865,8 @@ export default function Home() {
 						</div>
 					</div> */}
 				</div>
-			</section>			{/* Footer */}
+			</section>{" "}
+			{/* Footer */}
 			<footer className="py-12 px-4 sm:py-16 sm:px-6 lg:px-8 bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-gray-800">
 				<div className="max-w-6xl mx-auto">
 					<div className="grid gap-8 sm:gap-10 lg:grid-cols-4">
@@ -838,39 +881,105 @@ export default function Home() {
 								Config management that scales with you. Secure, fast, and developer-friendly.
 							</p>
 							<div className="flex items-center gap-4 text-gray-500">
-								<Link href="#" aria-label="Twitter" className="hover:text-gray-900 dark:hover:text-white">𝕏</Link>
-								<Link href="#" aria-label="GitHub" className="hover:text-gray-900 dark:hover:text-white">GH</Link>
-								<Link href="#" aria-label="Discord" className="hover:text-gray-900 dark:hover:text-white">💬</Link>
+								<Link
+									href="#"
+									aria-label="Twitter"
+									className="hover:text-gray-900 dark:hover:text-white"
+								>
+									𝕏
+								</Link>
+								<Link
+									href="#"
+									aria-label="GitHub"
+									className="hover:text-gray-900 dark:hover:text-white"
+								>
+									GH
+								</Link>
+								<Link
+									href="#"
+									aria-label="Discord"
+									className="hover:text-gray-900 dark:hover:text-white"
+								>
+									💬
+								</Link>
 							</div>
 						</div>
 
 						<div>
 							<h4 className="text-sm font-semibold mb-3 text-gray-900 dark:text-white">Product</h4>
 							<ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-								<li><Link href="#features" className="hover:text-gray-900 dark:hover:text-white">Features</Link></li>
-								<li><Link href="#pricing" className="hover:text-gray-900 dark:hover:text-white">Pricing</Link></li>
-								<li><Link href="#about-project" className="hover:text-gray-900 dark:hover:text-white">About</Link></li>
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Changelog</Link></li>
+								<li>
+									<Link href="#features" className="hover:text-gray-900 dark:hover:text-white">
+										Features
+									</Link>
+								</li>
+								<li>
+									<Link href="#pricing" className="hover:text-gray-900 dark:hover:text-white">
+										Pricing
+									</Link>
+								</li>
+								<li>
+									<Link href="#about-project" className="hover:text-gray-900 dark:hover:text-white">
+										About
+									</Link>
+								</li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Changelog
+									</Link>
+								</li>
 							</ul>
 						</div>
 
 						<div>
 							<h4 className="text-sm font-semibold mb-3 text-gray-900 dark:text-white">Resources</h4>
 							<ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Docs</Link></li>
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Guides</Link></li>
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Status</Link></li>
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Support</Link></li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Docs
+									</Link>
+								</li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Guides
+									</Link>
+								</li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Status
+									</Link>
+								</li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Support
+									</Link>
+								</li>
 							</ul>
 						</div>
 
 						<div>
 							<h4 className="text-sm font-semibold mb-3 text-gray-900 dark:text-white">Company</h4>
 							<ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-								<li><Link href="#about-project" className="hover:text-gray-900 dark:hover:text-white">About</Link></li>
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Blog</Link></li>
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Careers</Link></li>
-								<li><Link href="#" className="hover:text-gray-900 dark:hover:text-white">Contact</Link></li>
+								<li>
+									<Link href="#about-project" className="hover:text-gray-900 dark:hover:text-white">
+										About
+									</Link>
+								</li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Blog
+									</Link>
+								</li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Careers
+									</Link>
+								</li>
+								<li>
+									<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+										Contact
+									</Link>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -878,9 +987,15 @@ export default function Home() {
 					<div className="mt-10 pt-6 sm:mt-12 sm:pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-gray-500">
 						<div>© 2025 ConfigsHub. All rights reserved.</div>
 						<div className="flex items-center gap-4">
-							<Link href="#" className="hover:text-gray-900 dark:hover:text-white">Privacy</Link>
-							<Link href="#" className="hover:text-gray-900 dark:hover:text-white">Terms</Link>
-							<Link href="#" className="hover:text-gray-900 dark:hover:text-white">Security</Link>
+							<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+								Privacy
+							</Link>
+							<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+								Terms
+							</Link>
+							<Link href="#" className="hover:text-gray-900 dark:hover:text-white">
+								Security
+							</Link>
 						</div>
 					</div>
 				</div>

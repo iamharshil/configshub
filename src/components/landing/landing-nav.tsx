@@ -89,7 +89,9 @@ export function LandingNav() {
 						</Link>
 					))}
 					<Link href="/auth/signin">
-						<Button variant="ghost" size="sm">Sign In</Button>
+						<Button variant="ghost" size="sm">
+							Sign In
+						</Button>
 					</Link>
 					<Link href="/auth/signup">
 						<Button size="sm">Get Started</Button>
@@ -114,7 +116,7 @@ export function LandingNav() {
 					"absolute left-0 right-0 top-full bg-white/95 backdrop-blur-md transition-all duration-300 dark:bg-slate-950/95 md:hidden",
 					isMobileMenuOpen
 						? "max-h-96 border-b border-gray-200 opacity-100 dark:border-gray-800"
-						: "max-h-0 overflow-hidden opacity-0"
+						: "max-h-0 overflow-hidden opacity-0",
 				)}
 			>
 				<div className="flex flex-col space-y-4 px-4 py-6 sm:px-6">
@@ -130,7 +132,9 @@ export function LandingNav() {
 					))}
 					<div className="flex flex-col gap-3 pt-4">
 						<Link href="/auth/signin" className="w-full">
-							<Button variant="ghost" className="w-full justify-center">Sign In</Button>
+							<Button variant="ghost" className="w-full justify-center">
+								Sign In
+							</Button>
 						</Link>
 						<Link href="/auth/signup" className="w-full">
 							<Button className="w-full justify-center">Get Started</Button>

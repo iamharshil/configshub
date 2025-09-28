@@ -8,60 +8,67 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.next();
 	}
 
-	// The `/dashboard` route is protected, and the user should be redirected to the
+	// These routes are protected, and the user should be redirected to the
 	// sign-in page if they are not authenticated.
-	if (request.nextUrl.pathname.startsWith("/dashboard")) {
+	if (
+		request.nextUrl.pathname.startsWith("/dashboard") ||
+		request.nextUrl.pathname.startsWith("/profile") ||
+		request.nextUrl.pathname.startsWith("/settings")
+	) {
 		let response = NextResponse.next({
 			request: {
 				headers: request.headers,
 			},
 		});
 
-		const supabase = createServerClient(
-			process.env.NEXT_PUBLIC_SUPABASE_URL!,
-			process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-			{
-				cookies: {
-					get(name: string) {
-						return request.cookies.get(name)?.value;
-					},
-					set(name: string, value: string, options: CookieOptions) {
-						request.cookies.set({
-							name,
-							value,
-							...options,
-						});
-						response = NextResponse.next({
-							request: {
-								headers: request.headers,
-							},
-						});
-						response.cookies.set({
-							name,
-							value,
-							...options,
-						});
-					},
-					remove(name: string, options: CookieOptions) {
-						request.cookies.set({
-							name,
-							value: "",
-							...options,
-						});
-						response = NextResponse.next({
-							request: {
-								headers: request.headers,
-							},
-						});
-						response.cookies.set({
-							name,
-							value: "",
-							...options,
-						});
-					},
+		const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+		const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+		if (!supabaseUrl || !supabaseKey) {
+			throw new Error("Missing Supabase credentials");
+		}
+
+		const supabase = createServerClient(supabaseUrl, supabaseKey, {
+			cookies: {
+				get(name: string) {
+					return request.cookies.get(name)?.value;
+				},
+				set(name: string, value: string, options: CookieOptions) {
+					request.cookies.set({
+						name,
+						value,
+						...options,
+					});
+					response = NextResponse.next({
+						request: {
+							headers: request.headers,
+						},
+					});
+					response.cookies.set({
+						name,
+						value,
+						...options,
+					});
+				},
+				remove(name: string, options: CookieOptions) {
+					request.cookies.set({
+						name,
+						value: "",
+						...options,
+					});
+					response = NextResponse.next({
+						request: {
+							headers: request.headers,
+						},
+					});
+					response.cookies.set({
+						name,
+						value: "",
+						...options,
+					});
 				},
 			},
-		);
+		});
 
 		const {
 			data: { session },
@@ -78,5 +85,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/auth/callback", "/dashboard/:path*"],
+	matcher: ["/auth/callback", "/dashboard/:path*", "/profile/:path*", "/settings/:path*"],
 };
