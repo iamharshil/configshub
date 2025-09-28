@@ -169,7 +169,7 @@ function SignupContent() {
                     </div>
 
                     <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 p-8">
-                        <div className="mb-6">
+                        {/* <div className="mb-6">
                             <Link
                                 href="/"
                                 className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg transition-all duration-200 group"
@@ -177,7 +177,7 @@ function SignupContent() {
                                 <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
                                 Back to home
                             </Link>
-                        </div>
+                        </div> */}
 
                         {error && (
                             <Alert variant="destructive" className="mb-6">
