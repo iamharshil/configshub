@@ -10,20 +10,66 @@ export default function AuthCallback() {
 
 	useEffect(() => {
 		let cancelled = false;
-		(async () => {
-			// Supabase handles token exchange via hash params automatically when the client loads.
-			const { data } = await supabase.auth.getSession();
-			logger("OAuth callback session:", data.session);
-			if (!cancelled) {
-				if (data.session) {
-					router.replace("/dashboard");
-				} else {
-					router.replace("/auth/signin?error=oob");
+		let retryCount = 0;
+		const maxRetries = 3;
+
+		const checkSession = async () => {
+			try {
+				// Supabase handles token exchange via hash params automatically when the client loads.
+				const { data } = await supabase.auth.getSession();
+				logger("OAuth callback session:", data.session);
+
+				if (!cancelled) {
+					if (data.session) {
+						// Log successful authentication
+						try {
+							await fetch("/api/auth/user", {
+								method: "POST",
+								headers: { "Content-Type": "application/json" },
+								body: JSON.stringify({ user: data.session.user }),
+							});
+							await fetch("/api/auth/log-session", {
+								method: "POST",
+								headers: { "Content-Type": "application/json" },
+								body: JSON.stringify({
+									user: data.session.user,
+									event_type: "oauth_login",
+								}),
+							});
+						} catch (apiError) {
+							console.error("Error during post-login API calls:", apiError);
+						}
+
+						router.replace("/dashboard");
+					} else if (retryCount < maxRetries) {
+						// Retry after a short delay
+						retryCount++;
+						setTimeout(checkSession, 1000);
+					} else {
+						router.replace("/auth/signin?error=Authentication failed. Please try again.");
+					}
+				}
+			} catch (error) {
+				console.error("Auth callback error:", error);
+				if (!cancelled) {
+					router.replace("/auth/signin?error=Authentication error occurred.");
 				}
 			}
-		})();
+		};
+
+		// Initial check
+		checkSession();
+
+		// Timeout fallback
+		const timeout = setTimeout(() => {
+			if (!cancelled) {
+				router.replace("/auth/signin?error=Authentication timed out.");
+			}
+		}, 15000); // 15 second timeout
+
 		return () => {
 			cancelled = true;
+			clearTimeout(timeout);
 		};
 	}, [router]);
 
