@@ -1,4 +1,4 @@
 {
-  "words": ["configshub"],
-  "ignoreWords": ["supabase"]
+	"words": ["configshub"],
+	"ignoreWords": ["supabase"]
 }

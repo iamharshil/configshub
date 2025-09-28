@@ -87,6 +87,7 @@ export function JsonLd() {
 		],
 	};
 
+	// biome-ignore lint/security/noDangerouslySetInnerHtml: Necessary for JSON-LD script injection
 	return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />;
 }
 
@@ -101,6 +102,6 @@ export function BreadcrumbJsonLd({ items }: { items: Array<{ name: string; url: 
 			item: item.url,
 		})),
 	};
-
+	// biome-ignore lint/security/noDangerouslySetInnerHtml: Necessary for JSON-LD script injection
 	return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />;
 }

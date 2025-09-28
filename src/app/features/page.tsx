@@ -140,16 +140,16 @@ export default function Features() {
 			<section className="py-24 px-6 lg:px-8">
 				<div className="mx-auto max-w-6xl">
 					<div className="grid lg:grid-cols-2 gap-12">
-						{features.map((feature, index) => (
-							<Card key={index} className="apple-fade-in">
+						{features.map((feature) => (
+							<Card key={feature.title} className="apple-fade-in">
 								<CardHeader>
 									<CardTitle className="text-2xl">{feature.title}</CardTitle>
 									<CardDescription className="text-lg">{feature.description}</CardDescription>
 								</CardHeader>
 								<CardContent>
 									<div className="space-y-3">
-										{feature.benefits.map((benefit, benefitIndex) => (
-											<div key={benefitIndex} className="flex items-start gap-3">
+										{feature.benefits.map((benefit) => (
+											<div key={benefit} className="flex items-start gap-3">
 												<CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
 												<span className="text-muted-foreground">{benefit}</span>
 											</div>
