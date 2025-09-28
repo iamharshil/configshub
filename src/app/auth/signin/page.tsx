@@ -1,11 +1,14 @@
 "use client";
 import { ArrowLeft, Eye, EyeOff, Loader2, Lock, Mail, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/lib/supabase-client";
+import { logger } from "@/utils/general";
 // import { authClient } from "@/lib/auth-client";
 
 export default function Signin() {
@@ -51,6 +54,16 @@ export default function Signin() {
         setIsLoading(true);
         setError("");
 
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
+
+        if (error) {
+            setError(error.message || "An error occurred");
+        }
+        logger("Signin data:", data);
+        redirect("/dashboard");
         // const { data, error: authError } = await authClient.signIn.email({
         //     email,
         //     password,
@@ -71,15 +84,29 @@ export default function Signin() {
         setIsGoogleLoading(true);
         setError("");
 
-        // try {
-        //     await authClient.signIn.social({
-        //         provider: "google",
-        //         callbackURL: window.location.origin + "/dashboard",
-        //     });
-        // } catch {
-        //     setError("Failed to sign in with Google");
-        //     setIsGoogleLoading(false);
-        // }
+        try {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo: window.location.origin + "/dashboard",
+                },
+            });
+            if (error) {
+                setError(error.message || "An error occurred");
+                setIsGoogleLoading(false);
+                return;
+            }
+
+            logger("Google sign-in data:", data);
+            redirect("/dashboard");
+            //     await authClient.signIn.social({
+            //         provider: "google",
+            //         callbackURL: window.location.origin + "/dashboard",
+            //     });
+        } catch {
+            setError("Failed to sign in with Google");
+            setIsGoogleLoading(false);
+        }
     };
 
     // Prevent hydration mismatch by showing loading on client side only

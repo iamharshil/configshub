@@ -1,12 +1,15 @@
 "use client";
 import { ArrowLeft, Eye, EyeOff, Loader2, Lock, Mail, Sparkles, User } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-// import { authClient } from "@/lib/auth-client";
+import { supabase } from "@/lib/supabase-client";
+import { logger } from "@/utils/general";
 
 export default function Signup() {
     const [email, setEmail] = useState("");
@@ -19,25 +22,23 @@ export default function Signup() {
     const [isCheckingAuth, setIsCheckingAuth] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    // Check if user is already authenticated
     useEffect(() => {
         setIsMounted(true);
 
         const checkAuth = async () => {
-            // setIsCheckingAuth(true);
-            // try {
-            //     const session = await authClient.getSession();
-            //     if (session?.data?.user) {
-            //         // User is already logged in, redirect to dashboard
-            //         window.location.href = "/dashboard";
-            //         return;
-            //     }
-            // } catch (_error) {
-            //     // User is not logged in, which is expected for signup page
-            //     console.log("No active session, continuing with signup");
-            // } finally {
-            //     setIsCheckingAuth(false);
-            // }
+            setIsCheckingAuth(true);
+            try {
+                const { data: { user } } = await supabase.auth.getUser();
+                logger("Auth check user:", user);
+                if (user) {
+                    window.location.href = "/dashboard";
+                    return;
+                }
+            } catch (_error) {
+                console.log("No active session, continuing with signup");
+            } finally {
+                setIsCheckingAuth(false);
+            }
         };
 
         checkAuth();
@@ -52,36 +53,40 @@ export default function Signup() {
         setIsLoading(true);
         setError("");
 
-        // const { data, error: authError } = await authClient.signUp.email({
-        //     email,
-        //     password,
-        //     name,
-        // });
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL as string}/dashboard`,
+            },
+        });
 
-        // if (authError) {
-        //     setError(authError.message || "An error occurred");
-        // } else {
-        //     console.log("Signed up:", data.user);
-        //     // Redirect directly to dashboard after successful registration
-        //     window.location.href = "/dashboard";
-        // }
-
-        setIsLoading(false);
+        if (error) {
+            setError(error.message || "An error occurred");
+            toast.error(error.message || "An error occurred during signup");
+            setIsLoading(false);
+            return;
+        } else {
+            logger("Signup data:", data);
+            return redirect("/dashboard");
+        }
     };
 
     const handleGoogleSignup = async () => {
         setIsGoogleLoading(true);
         setError("");
 
-        // try {
-        // await authClient.signIn.social({
-        //     provider: "google",
-        //     callbackURL: window.location.origin + "/dashboard",
-        // });
-        // } catch {
-        //     setError("Failed to sign up with Google");
-        //     setIsGoogleLoading(false);
-        // }
+        try {
+            await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL as string}/dashboard`,
+                },
+            });
+        } catch {
+            setError("Failed to sign up with Google");
+            setIsGoogleLoading(false);
+        }
     };
 
     // Prevent hydration mismatch by showing loading on client side only
