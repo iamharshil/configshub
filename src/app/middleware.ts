@@ -13,7 +13,8 @@ export async function middleware(request: NextRequest) {
 	if (
 		request.nextUrl.pathname.startsWith("/dashboard") ||
 		request.nextUrl.pathname.startsWith("/profile") ||
-		request.nextUrl.pathname.startsWith("/settings")
+		request.nextUrl.pathname.startsWith("/settings") ||
+		request.nextUrl.pathname.startsWith("/projects")
 	) {
 		let response = NextResponse.next({
 			request: {
@@ -85,5 +86,13 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/auth/callback", "/dashboard/:path*", "/profile/:path*", "/settings/:path*"],
+	matcher: [
+		"/auth/callback",
+		"/dashboard/:path*",
+		"/profile/:path*",
+		"/settings/:path*",
+		"/projects",
+		"/projects/new",
+		"/projects/:id*",
+	],
 };

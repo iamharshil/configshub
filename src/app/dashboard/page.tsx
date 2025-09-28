@@ -215,18 +215,15 @@ export default function Dashboard() {
                             >
                                 Overview
                             </button>
-                            <button
-                                type="button"
-                                onClick={() => setActiveTab("projects")}
+                            <Link
+                                href="/projects"
                                 className={cn(
                                     "text-sm font-medium transition-colors",
-                                    activeTab === "projects"
-                                        ? "text-blue-600 dark:text-blue-400"
-                                        : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
+                                    "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
                                 )}
                             >
                                 Projects
-                            </button>
+                            </Link>
                             <button
                                 type="button"
                                 onClick={() => setActiveTab("discover")}
@@ -295,9 +292,11 @@ export default function Dashboard() {
                                                 <span>Settings</span>
                                             </Link>
                                         </DropdownMenuItem>
-                                        <DropdownMenuItem>
-                                            <Folder className="mr-2 h-4 w-4" />
-                                            <span>My Projects</span>
+                                        <DropdownMenuItem asChild>
+                                            <Link href="/projects" className="flex items-center cursor-pointer">
+                                                <Folder className="mr-2 h-4 w-4" />
+                                                <span>My Projects</span>
+                                            </Link>
                                         </DropdownMenuItem>
                                         <DropdownMenuItem>
                                             <Star className="mr-2 h-4 w-4" />
