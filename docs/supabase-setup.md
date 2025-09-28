@@ -22,9 +22,11 @@ If you plan to keep Better Auth simultaneously, ensure its secrets do not confli
 
 In your Supabase project settings:
 
-- Enable Email auth provider.
-- Enable Google OAuth under Authentication > Providers. Set:
-  - Redirect URL: `http://localhost:3000/auth/callback` (and your production domain equivalent).
+-   Enable Email auth provider.
+-   Enable Google OAuth under Authentication > Providers. Set:
+    -   Redirect URL: `http://localhost:3000/auth/callback` (and your production domain equivalent).
+-   Enable GitHub OAuth under Authentication > Providers. Set:
+    -   Redirect URL: `http://localhost:3000/auth/callback` (and your production domain equivalent).
 
 ### 3. OAuth Redirect Flow
 
@@ -37,27 +39,27 @@ Client pages call `supabase.auth.getUser()` / `getSession()` to derive state. Fo
 
 ### 5. Adding Additional Providers
 
-Enable the provider in Supabase > Authentication > Providers, then extend the Sign In / Sign Up buttons with another `signInWithOAuth({ provider: '<provider>' })` call.
+Enable the provider in Supabase > Authentication > Providers, then extend the Sign In / Sign Up buttons with another `signInWithOAuth({ provider: '<provider>' })` call. Currently, the app supports both Google and GitHub authentication providers.
 
 ### 6. Email Confirmation
 
 Currently the signup flow treats an immediate session as success. If you enable email confirmations in Supabase:
 
-- Users will not have an active session until they click the confirmation link.
-- The code already displays a success toast fallback; expand this with a dedicated confirmation screen if desired.
+-   Users will not have an active session until they click the confirmation link.
+-   The code already displays a success toast fallback; expand this with a dedicated confirmation screen if desired.
 
 ### 7. Migrating Away From Better Auth
 
 If Supabase fully replaces Better Auth:
 
-- Remove `src/utils/auth.ts` and related middleware export.
-- Remove `export { auth as middleware }` from `src/app/middleware.ts` and replace with a cookie-based Supabase session refresh strategy if needed.
-- Update deployment docs to reference only Supabase.
+-   Remove `src/utils/auth.ts` and related middleware export.
+-   Remove `export { auth as middleware }` from `src/app/middleware.ts` and replace with a cookie-based Supabase session refresh strategy if needed.
+-   Update deployment docs to reference only Supabase.
 
 ### 8. Security Notes
 
-- Never expose the service role key to the browser; only use the anon (public) key client-side.
-- Use Row Level Security (RLS) for any custom tables you add later.
+-   Never expose the service role key to the browser; only use the anon (public) key client-side.
+-   Use Row Level Security (RLS) for any custom tables you add later.
 
 ### 9. Troubleshooting Checklist
 
@@ -70,9 +72,9 @@ If Supabase fully replaces Better Auth:
 
 ### 10. Next Improvements
 
-- Add a server-side layout guard that fetches the user via `createServerClient`.
-- Persist minimal user profile in a `profiles` table (trigger or edge function to auto-create on auth event).
-- Centralize auth utilities (hooks for `useAuthUser`, `signOut`, etc.).
+-   Add a server-side layout guard that fetches the user via `createServerClient`.
+-   Persist minimal user profile in a `profiles` table (trigger or edge function to auto-create on auth event).
+-   Centralize auth utilities (hooks for `useAuthUser`, `signOut`, etc.).
 
 ---
 
