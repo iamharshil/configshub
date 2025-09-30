@@ -1,8 +1,8 @@
 "use client";
 
-import { Bell, Database, FileText, GitBranch, LogOut, Settings, User } from "lucide-react";
+import { Bell, Database, Folder, Key, LogOut, Settings, Star, User } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,42 +15,71 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/lib/supabase/client";
+import { cn } from "@/lib/utils";
 
-export default function Header() {
-	const router = useRouter();
-	const [user, setUser] = useState<{ name?: string; email?: string } | null>(null);
+function extractFullName(meta: unknown): string | undefined {
+	if (meta && typeof meta === "object" && "full_name" in meta) {
+		const value = (meta as { full_name?: unknown }).full_name;
+		return typeof value === "string" ? value : undefined;
+	}
+	return undefined;
+}
+
+interface DashboardHeaderProps {
+	activeTab?: string;
+	onTabChange?: (tab: string) => void;
+}
+
+export function DashboardHeader({ activeTab, onTabChange }: DashboardHeaderProps) {
+	const [user, setUser] = useState<{ name?: string; email: string; emailVerified?: boolean } | null>(null);
+	const pathname = usePathname();
 
 	useEffect(() => {
-		const fetchUser = async () => {
-			try {
-				if (!supabase) return;
-
-				const { data, error } = await supabase.auth.getUser();
-				if (error) throw error;
-
-				if (data?.user) {
-					const metadata = data.user.user_metadata || {};
-					const fullName = typeof metadata.full_name === "string" ? metadata.full_name : undefined;
-
-					setUser({
-						name: fullName,
-						email: data.user.email,
-					});
-				}
-			} catch (error) {
-				console.error("Error fetching user in header:", error);
+		const getUser = async () => {
+			const { data } = await supabase.auth.getUser();
+			if (data.user) {
+				setUser({ email: data.user.email ?? "", name: extractFullName(data.user.user_metadata) });
 			}
 		};
-
-		fetchUser();
+		getUser();
 	}, []);
 
 	const handleSignOut = async () => {
 		try {
+			// Log the sign-out event before signing out
+			const { data } = await supabase.auth.getUser();
+			if (data.user) {
+				await fetch("/api/auth/log-session", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ user: data.user, event_type: "logout" }),
+				});
+			}
+
 			await supabase.auth.signOut();
-			router.push("/auth/signin");
+			window.location.href = "/";
 		} catch (error) {
 			console.error("Error signing out:", error);
+		}
+	};
+
+	const isActiveTab = (tab: string) => {
+		if (activeTab) return activeTab === tab;
+
+		// Default active state based on pathname
+		switch (tab) {
+			case "overview":
+				return pathname === "/dashboard";
+			case "projects":
+				return pathname.startsWith("/projects");
+			default:
+				return false;
+		}
+	};
+
+	const handleTabClick = (tab: string) => {
+		if (onTabChange) {
+			onTabChange(tab);
 		}
 	};
 
@@ -67,12 +96,53 @@ export default function Header() {
 				</div>
 				<div className="flex items-center gap-3">
 					<div className="hidden items-center gap-6 md:flex">
-						<Link
-							href="/dashboard"
-							className="text-sm font-medium transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+						<button
+							type="button"
+							onClick={() => handleTabClick("overview")}
+							className={cn(
+								"text-sm font-medium transition-colors",
+								isActiveTab("overview")
+									? "text-blue-600 dark:text-blue-400"
+									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
+							)}
 						>
-							Dashboard
+							<Link href="/dashboard">Overview</Link>
+						</button>
+						<Link
+							href="/projects"
+							className={cn(
+								"text-sm font-medium transition-colors",
+								isActiveTab("projects")
+									? "text-blue-600 dark:text-blue-400"
+									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
+							)}
+						>
+							Projects
 						</Link>
+						<button
+							type="button"
+							onClick={() => handleTabClick("discover")}
+							className={cn(
+								"text-sm font-medium transition-colors",
+								isActiveTab("discover")
+									? "text-blue-600 dark:text-blue-400"
+									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
+							)}
+						>
+							Discover
+						</button>
+						<button
+							type="button"
+							onClick={() => handleTabClick("cli")}
+							className={cn(
+								"text-sm font-medium transition-colors",
+								isActiveTab("cli")
+									? "text-blue-600 dark:text-blue-400"
+									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
+							)}
+						>
+							CLI
+						</button>
 					</div>
 
 					<div className="flex items-center gap-2">
@@ -117,12 +187,18 @@ export default function Header() {
 											<span>Settings</span>
 										</Link>
 									</DropdownMenuItem>
-									<DropdownMenuItem>
-										<GitBranch className="mr-2 h-4 w-4" />
-										<span>My Projects</span>
+									<DropdownMenuItem asChild>
+										<Link href="/projects" className="flex items-center cursor-pointer">
+											<Folder className="mr-2 h-4 w-4" />
+											<span>My Projects</span>
+										</Link>
 									</DropdownMenuItem>
 									<DropdownMenuItem>
-										<FileText className="mr-2 h-4 w-4" />
+										<Star className="mr-2 h-4 w-4" />
+										<span>Starred Configs</span>
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										<Key className="mr-2 h-4 w-4" />
 										<span>API Keys</span>
 									</DropdownMenuItem>
 								</DropdownMenuGroup>
