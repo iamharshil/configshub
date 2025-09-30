@@ -104,7 +104,7 @@ export default function RootLayout({
 				<meta name="msapplication-TileColor" content="#3b82f6" />
 				<meta name="theme-color" content="#3b82f6" />
 			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					{children}
 					<ToastProvider />

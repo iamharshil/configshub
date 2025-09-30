@@ -84,14 +84,14 @@ export function DashboardHeader({ activeTab, onTabChange }: DashboardHeaderProps
 	};
 
 	return (
-		<header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-slate-950/80">
+		<header className="sticky top-0 z-50 w-full glass-nav">
 			<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
 				<div className="flex items-center gap-3">
 					<Link href="/dashboard" className="flex items-center gap-3">
-						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg">
+						<div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-primary shadow-modern">
 							<Database className="h-4 w-4 text-white" />
 						</div>
-						<span className="text-lg font-bold sm:text-xl">ConfigsHub</span>
+						<span className="text-lg font-bold sm:text-xl gradient-text">ConfigsHub</span>
 					</Link>
 				</div>
 				<div className="flex items-center gap-3">
@@ -100,9 +100,9 @@ export function DashboardHeader({ activeTab, onTabChange }: DashboardHeaderProps
 							type="button"
 							onClick={() => handleTabClick("overview")}
 							className={cn(
-								"text-sm font-medium transition-colors",
+								"text-sm font-medium transition-all duration-300 hover-glow",
 								isActiveTab("overview")
-									? "text-blue-600 dark:text-blue-400"
+									? "text-primary font-semibold"
 									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
 							)}
 						>
@@ -111,9 +111,9 @@ export function DashboardHeader({ activeTab, onTabChange }: DashboardHeaderProps
 						<Link
 							href="/projects"
 							className={cn(
-								"text-sm font-medium transition-colors",
+								"text-sm font-medium transition-all duration-300 hover-glow",
 								isActiveTab("projects")
-									? "text-blue-600 dark:text-blue-400"
+									? "text-primary font-semibold"
 									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
 							)}
 						>
@@ -123,9 +123,9 @@ export function DashboardHeader({ activeTab, onTabChange }: DashboardHeaderProps
 							type="button"
 							onClick={() => handleTabClick("discover")}
 							className={cn(
-								"text-sm font-medium transition-colors",
+								"text-sm font-medium transition-all duration-300 hover-glow",
 								isActiveTab("discover")
-									? "text-blue-600 dark:text-blue-400"
+									? "text-primary font-semibold"
 									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
 							)}
 						>
@@ -135,9 +135,9 @@ export function DashboardHeader({ activeTab, onTabChange }: DashboardHeaderProps
 							type="button"
 							onClick={() => handleTabClick("cli")}
 							className={cn(
-								"text-sm font-medium transition-colors",
+								"text-sm font-medium transition-all duration-300 hover-glow",
 								isActiveTab("cli")
-									? "text-blue-600 dark:text-blue-400"
+									? "text-primary font-semibold"
 									: "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
 							)}
 						>
@@ -145,73 +145,78 @@ export function DashboardHeader({ activeTab, onTabChange }: DashboardHeaderProps
 						</button>
 					</div>
 
-					<div className="flex items-center gap-2">
-						<Button variant="ghost" size="icon" className="rounded-full">
+					<div className="flex items-center gap-2 relative">
+						<Button variant="ghost" size="icon" className="btn-glass rounded-xl">
 							<Bell className="h-4 w-4" />
 						</Button>
 
 						{/* User dropdown menu */}
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<Button
-									variant="ghost"
-									size="icon"
-									className="rounded-full hover:bg-gray-100 dark:hover:bg-slate-800"
-								>
-									<div className="relative">
-										<div className="h-8 w-8 overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
-											<User className="h-4 w-4 text-white" />
+						<div className="relative">
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button variant="ghost" size="icon" className="btn-glass rounded-xl">
+										<div className="relative">
+											<div className="h-8 w-8 overflow-hidden rounded-xl bg-gradient-primary flex items-center justify-center shadow-modern">
+												<User className="h-4 w-4 text-white" />
+											</div>
+											<span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-success ring-1 ring-white dark:ring-gray-900"></span>
 										</div>
-										<span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-500 ring-1 ring-white dark:ring-slate-900"></span>
-									</div>
-								</Button>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent align="end" className="w-56">
-								<DropdownMenuLabel className="font-normal">
-									<div className="flex flex-col space-y-1">
-										<p className="text-sm font-medium leading-none">{user?.name || "User"}</p>
-										<p className="text-xs leading-none text-muted-foreground">{user?.email}</p>
-									</div>
-								</DropdownMenuLabel>
-								<DropdownMenuSeparator />
-								<DropdownMenuGroup>
-									<DropdownMenuItem asChild>
-										<Link href="/profile" className="flex items-center cursor-pointer">
-											<User className="mr-2 h-4 w-4" />
-											<span>Profile</span>
-										</Link>
-									</DropdownMenuItem>
-									<DropdownMenuItem asChild>
-										<Link href="/settings" className="flex items-center cursor-pointer">
-											<Settings className="mr-2 h-4 w-4" />
-											<span>Settings</span>
-										</Link>
-									</DropdownMenuItem>
-									<DropdownMenuItem asChild>
-										<Link href="/projects" className="flex items-center cursor-pointer">
-											<Folder className="mr-2 h-4 w-4" />
-											<span>My Projects</span>
-										</Link>
-									</DropdownMenuItem>
-									<DropdownMenuItem>
-										<Star className="mr-2 h-4 w-4" />
-										<span>Starred Configs</span>
-									</DropdownMenuItem>
-									<DropdownMenuItem>
-										<Key className="mr-2 h-4 w-4" />
-										<span>API Keys</span>
-									</DropdownMenuItem>
-								</DropdownMenuGroup>
-								<DropdownMenuSeparator />
-								<DropdownMenuItem
-									onClick={handleSignOut}
-									className="text-red-500 focus:bg-red-50 dark:focus:bg-red-950/20"
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									side="bottom"
+									align="end"
+									alignOffset={-16}
+									sideOffset={8}
+									className="w-56 glass-card profile-dropdown"
+									avoidCollisions={true}
 								>
-									<LogOut className="mr-2 h-4 w-4" />
-									<span>Sign Out</span>
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
+									<DropdownMenuLabel className="font-normal">
+										<div className="flex flex-col space-y-1">
+											<p className="text-sm font-medium leading-none">{user?.name || "User"}</p>
+											<p className="text-xs leading-none text-muted-foreground">{user?.email}</p>
+										</div>
+									</DropdownMenuLabel>
+									<DropdownMenuSeparator />
+									<DropdownMenuGroup>
+										<DropdownMenuItem asChild>
+											<Link href="/profile" className="flex items-center cursor-pointer">
+												<User className="mr-2 h-4 w-4" />
+												<span>Profile</span>
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuItem asChild>
+											<Link href="/settings" className="flex items-center cursor-pointer">
+												<Settings className="mr-2 h-4 w-4" />
+												<span>Settings</span>
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuItem asChild>
+											<Link href="/projects" className="flex items-center cursor-pointer">
+												<Folder className="mr-2 h-4 w-4" />
+												<span>My Projects</span>
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuItem>
+											<Star className="mr-2 h-4 w-4" />
+											<span>Starred Configs</span>
+										</DropdownMenuItem>
+										<DropdownMenuItem>
+											<Key className="mr-2 h-4 w-4" />
+											<span>API Keys</span>
+										</DropdownMenuItem>
+									</DropdownMenuGroup>
+									<DropdownMenuSeparator />
+									<DropdownMenuItem
+										onClick={handleSignOut}
+										className="text-red-500 focus:bg-red-50/50 dark:focus:bg-red-950/20"
+									>
+										<LogOut className="mr-2 h-4 w-4" />
+										<span>Sign Out</span>
+									</DropdownMenuItem>
+								</DropdownMenuContent>
+							</DropdownMenu>
+						</div>
 					</div>
 				</div>
 			</div>

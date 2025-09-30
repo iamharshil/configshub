@@ -331,9 +331,7 @@
 	backdrop-filter: var(--glass-backdrop);
 	-webkit-backdrop-filter: var(--glass-backdrop);
 	border: 1px solid var(--glass-border);
-	box-shadow:
-		var(--glass-shadow),
-		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	position: relative;
 	overflow: hidden;
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -341,22 +339,16 @@
 
 .glass-card:hover {
 	transform: translateY(-2px);
-	box-shadow:
-		0 20px 40px rgba(0, 0, 0, 0.1),
-		inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .dark .glass-card {
 	background: linear-gradient(135deg, var(--glass-bg) 0%, rgba(30, 41, 59, 0.1) 100%);
-	box-shadow:
-		var(--glass-shadow),
-		inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .dark .glass-card:hover {
-	box-shadow:
-		0 20px 40px rgba(0, 0, 0, 0.3),
-		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Modern Hero Glass Effect */
@@ -370,9 +362,7 @@
 	backdrop-filter: blur(20px) saturate(180%);
 	-webkit-backdrop-filter: blur(20px) saturate(180%);
 	border: 1px solid rgba(255, 255, 255, 0.2);
-	box-shadow:
-		0 25px 50px rgba(0, 0, 0, 0.08),
-		inset 0 1px 0 rgba(255, 255, 255, 0.15);
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .dark .hero-glass {
@@ -383,9 +373,7 @@
 		rgba(129, 140, 248, 0.1) 100%
 	);
 	border: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow:
-		0 25px 50px rgba(0, 0, 0, 0.2),
-		inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* Modern Button Effects */
@@ -472,16 +460,43 @@
 }
 
 /* Modern Navigation */
-.nav-glass {
+.nav-glass,
+.glass-nav {
 	background: rgba(255, 255, 255, 0.8);
 	backdrop-filter: blur(20px) saturate(180%);
 	-webkit-backdrop-filter: blur(20px) saturate(180%);
 	border-bottom: 1px solid rgba(226, 232, 240, 0.3);
 }
 
-.dark .nav-glass {
+.dark .nav-glass,
+.dark .glass-nav {
 	background: rgba(10, 14, 26, 0.8);
 	border-bottom: 1px solid rgba(241, 245, 249, 0.1);
+}
+
+/* Modern Button Glass Effect */
+.btn-glass {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+	background: rgba(255, 255, 255, 0.2);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark .btn-glass {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .btn-glass:hover {
+	background: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Enhanced Gradients */
@@ -500,21 +515,15 @@
 
 /* Modern Shadows */
 .shadow-modern {
-	box-shadow:
-		0 4px 6px -1px rgba(0, 0, 0, 0.1),
-		0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .shadow-modern-lg {
-	box-shadow:
-		0 20px 25px -5px rgba(0, 0, 0, 0.1),
-		0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .shadow-glow {
-	box-shadow:
-		0 0 0 1px rgba(99, 102, 241, 0.05),
-		0 4px 16px rgba(99, 102, 241, 0.12),
+	box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.05), 0 4px 16px rgba(99, 102, 241, 0.12),
 		0 8px 32px rgba(99, 102, 241, 0.08);
 }
 
@@ -623,9 +632,7 @@
 /* Modern Borders */
 .border-gradient {
 	border: 1px solid transparent;
-	background:
-		linear-gradient(var(--background), var(--background)) padding-box,
-		var(--gradient-brand) border-box;
+	background: linear-gradient(var(--background), var(--background)) padding-box, var(--gradient-brand) border-box;
 }
 
 /* Loading States */
@@ -660,20 +667,15 @@
 
 /* Enhanced smooth transitions */
 * {
-	transition:
-		background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-		border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-		color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-		box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+	transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+		color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
 		transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
 	background: var(--background);
 	color: var(--foreground);
-	font-feature-settings:
-		"rlig" 1,
-		"calt" 1;
+	font-feature-settings: "rlig" 1, "calt" 1;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -712,4 +714,80 @@ body {
 ::selection {
 	background: rgba(99, 102, 241, 0.3);
 	color: var(--foreground);
+}
+
+/* Utility Classes */
+.bg-gradient-primary {
+	background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
+}
+
+.bg-success {
+	background: var(--success);
+}
+
+.text-primary {
+	color: var(--primary);
+}
+
+.hover-glow {
+	transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+	text-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}
+
+/* Dropdown positioning fix */
+.origin-top-right {
+	transform-origin: top right;
+}
+
+/* Force dropdown to appear on the right */
+[data-radix-popper-content-wrapper] {
+	z-index: 200;
+}
+
+/* Profile dropdown with no animations */
+.profile-dropdown {
+	transform-origin: top right;
+	opacity: 1;
+	transform: scale(1) translateY(0);
+}
+
+/* Mobile-specific dropdown positioning */
+@media (max-width: 768px) {
+	/* Ensure dropdown fits within viewport */
+	.profile-dropdown {
+		width: calc(100vw - 3rem);
+		max-width: 14rem;
+		margin-right: 1rem;
+	}
+
+	/* Prevent dropdown from causing overflow */
+	[data-radix-popper-content-wrapper] {
+		max-width: calc(100vw - 2rem);
+		position: fixed;
+		right: 1rem;
+		left: auto;
+	}
+
+	/* Ensure body doesn't scroll horizontally */
+	html,
+	body {
+		overflow-x: hidden;
+		max-width: 100vw;
+	}
+
+	/* Prevent main container overflow */
+	.min-h-screen {
+		overflow-x: hidden;
+		max-width: 100vw;
+	}
+
+	/* More specific positioning for mobile dropdown */
+	[data-radix-popper-content-wrapper] .profile-dropdown {
+		transform: translateX(-0.5rem);
+		width: calc(100vw - 3rem);
+		max-width: 14rem;
+	}
 }
