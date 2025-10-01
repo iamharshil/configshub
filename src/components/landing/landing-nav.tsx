@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 const navigationItems = [
 	{ href: "#features", label: "Features" },
-	{ href: "#pricing", label: "Pricing" },
+	{ href: "/pricing", label: "Pricing" },
 	{ href: "#about", label: "About" },
 ];
 

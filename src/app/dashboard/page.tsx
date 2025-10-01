@@ -233,7 +233,7 @@ export default function Dashboard() {
 				{/* Stats Overview Section */}
 				<section className="mb-12">
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-						<div className="card-modern group">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6">
 							<div className="flex items-center justify-between">
 								<div>
 									<p className="text-sm font-medium text-gray-500 dark:text-gray-400">Projects</p>
@@ -249,7 +249,7 @@ export default function Dashboard() {
 							</div>
 						</div>
 
-						<div className="card-modern group">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6">
 							<div className="flex items-center justify-between">
 								<div>
 									<p className="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -267,32 +267,32 @@ export default function Dashboard() {
 							</div>
 						</div>
 
-						<div className="card-modern group">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6">
 							<div className="flex items-center justify-between">
 								<div>
 									<p className="text-sm font-medium text-gray-500 dark:text-gray-400">
 										Config Files
 									</p>
 									<p className="mt-2 text-3xl font-bold">25</p>
-									<div className="mt-2 flex items-center text-sm text-secondary">
+									<div className="mt-2 flex items-center text-sm text-light/10">
 										<FileCode className="mr-1 h-3 w-3" />
 										<span>8 New this week</span>
 									</div>
 								</div>
-								<div className="icon-container bg-secondary/10 text-secondary">
+								<div className="icon-container bg-primary/10 text-primary">
 									<FileCode className="h-full w-full" />
 								</div>
 							</div>
 						</div>
 
-						<div className="card-modern group">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6">
 							<div className="flex items-center justify-between">
 								<div>
 									<p className="text-sm font-medium text-gray-500 dark:text-gray-400">
 										Storage Used
 									</p>
 									<p className="mt-2 text-3xl font-bold">14MB</p>
-									<div className="mt-2 flex items-center text-sm text-warning">
+									<div className="mt-2 flex items-center text-sm text-primary">
 										<Database className="mr-1 h-3 w-3" />
 										<span>50MB Limit (Free)</span>
 									</div>
@@ -317,7 +317,7 @@ export default function Dashboard() {
 					<div className="glass-card rounded-2xl overflow-hidden">
 						<div className="divide-y divide-gray-200/50 dark:divide-gray-700/50">
 							<div className="flex items-center gap-4 p-4 hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-colors">
-								<div className="icon-container bg-primary/10 text-primary">
+								<div className="icon-container bg-success/10 text-success">
 									<History className="h-5 w-5" />
 								</div>
 								<div className="flex-1">
@@ -353,13 +353,13 @@ export default function Dashboard() {
 							</div>
 
 							<div className="flex items-center gap-4 p-4 hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-colors">
-								<div className="icon-container bg-secondary/10 text-secondary">
+								<div className="icon-container bg-success/10 text-success">
 									<Terminal className="h-5 w-5" />
 								</div>
 								<div className="flex-1">
 									<p className="font-medium">
 										CLI pull completed for{" "}
-										<span className="font-semibold text-secondary">Neovim</span> configs
+										<span className="font-semibold text-primary">Neovim</span> configs
 									</p>
 									<p className="text-sm text-gray-500 dark:text-gray-400">
 										5 files synced to local machine
@@ -371,12 +371,12 @@ export default function Dashboard() {
 							</div>
 
 							<div className="flex items-center gap-4 p-4 hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-colors">
-								<div className="icon-container bg-warning/10 text-warning">
+								<div className="icon-container bg-success/10 text-success">
 									<FileCode className="h-5 w-5" />
 								</div>
 								<div className="flex-1">
 									<p className="font-medium">
-										Added <span className="font-semibold text-warning">.zshrc</span> to Terminal
+										Added <span className="font-semibold text-primary">.zshrc</span> to Terminal
 										group
 									</p>
 									<p className="text-sm text-gray-500 dark:text-gray-400">
@@ -389,12 +389,12 @@ export default function Dashboard() {
 							</div>
 
 							<div className="flex items-center gap-4 p-4 hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-colors">
-								<div className="icon-container bg-accent/10 text-accent">
+								<div className="icon-container bg-success/10 text-success">
 									<Folder className="h-5 w-5" />
 								</div>
 								<div className="flex-1">
 									<p className="font-medium">
-										Created <span className="font-semibold text-accent">Backend Dev</span>{" "}
+										Created <span className="font-semibold text-primary">Backend Dev</span>{" "}
 										project
 									</p>
 									<p className="text-sm text-gray-500 dark:text-gray-400">
@@ -419,9 +419,9 @@ export default function Dashboard() {
 					</div>
 
 					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-						<div className="card-modern group cursor-pointer">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 cursor-pointer">
 							<div className="mb-4 flex items-center justify-between">
-								<div className="icon-container bg-primary/10 text-primary">
+								<div className="icon-container bg-success/10 text-success">
 									<Code className="h-full w-full" />
 								</div>
 								<span className="badge bg-success/10 text-success">Public</span>
@@ -432,19 +432,25 @@ export default function Dashboard() {
 							</p>
 							<div className="mt-4">
 								<div className="flex flex-wrap gap-2">
-									<span className="tag bg-primary/10 text-primary">VSCode</span>
-									<span className="tag bg-secondary/10 text-secondary">Neovim</span>
-									<span className="tag bg-success/10 text-success">Terminal</span>
-									<span className="tag bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										VSCode
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Neovim
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Terminal
+									</span>
+									<span className="tag bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400 px-4 rounded-lg">
 										+1
 									</span>
 								</div>
 							</div>
 						</div>
 
-						<div className="card-modern group cursor-pointer">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 cursor-pointer">
 							<div className="mb-4 flex items-center justify-between">
-								<div className="icon-container bg-secondary/10 text-secondary">
+								<div className="icon-container bg-success/10 text-success">
 									<Database className="h-full w-full" />
 								</div>
 								<span className="badge bg-warning/10 text-warning">Private</span>
@@ -455,13 +461,17 @@ export default function Dashboard() {
 							</p>
 							<div className="mt-4">
 								<div className="flex flex-wrap gap-2">
-									<span className="tag bg-warning/10 text-warning">Docker</span>
-									<span className="tag bg-accent/10 text-accent">PostgreSQL</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Docker
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										PostgreSQL
+									</span>
 								</div>
 							</div>
 						</div>
 
-						<div className="card-modern group cursor-pointer">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 cursor-pointer">
 							<div className="mb-4 flex items-center justify-between">
 								<div className="icon-container bg-success/10 text-success">
 									<GitFork className="h-full w-full" />
@@ -474,9 +484,15 @@ export default function Dashboard() {
 							</p>
 							<div className="mt-4">
 								<div className="flex flex-wrap gap-2">
-									<span className="tag bg-primary/10 text-primary">ESLint</span>
-									<span className="tag bg-secondary/10 text-secondary">Prettier</span>
-									<span className="tag bg-success/10 text-success">VSCode</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										ESLint
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Prettier
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										VSCode
+									</span>
 								</div>
 							</div>
 						</div>
@@ -493,9 +509,9 @@ export default function Dashboard() {
 					</div>
 
 					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-						<div className="card-modern group cursor-pointer">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 cursor-pointer">
 							<div className="mb-4 flex items-center justify-between">
-								<div className="icon-container bg-primary/10 text-primary">
+								<div className="icon-container bg-success/10 text-success">
 									<Code className="h-full w-full" />
 								</div>
 								<div className="flex items-center gap-1.5">
@@ -507,13 +523,17 @@ export default function Dashboard() {
 							<p className="text-sm text-gray-500 dark:text-gray-400">By VSCodeNinja</p>
 							<div className="mt-4">
 								<div className="flex flex-wrap gap-2">
-									<span className="tag bg-primary/10 text-primary">Frontend</span>
-									<span className="tag bg-secondary/10 text-secondary">React</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Frontend
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										React
+									</span>
 								</div>
 							</div>
 						</div>
 
-						<div className="card-modern group cursor-pointer">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 cursor-pointer">
 							<div className="mb-4 flex items-center justify-between">
 								<div className="icon-container bg-success/10 text-success">
 									<Terminal className="h-full w-full" />
@@ -527,15 +547,19 @@ export default function Dashboard() {
 							<p className="text-sm text-gray-500 dark:text-gray-400">By terminal_pro</p>
 							<div className="mt-4">
 								<div className="flex flex-wrap gap-2">
-									<span className="tag bg-warning/10 text-warning">Shell</span>
-									<span className="tag bg-success/10 text-success">Productivity</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Shell
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Productivity
+									</span>
 								</div>
 							</div>
 						</div>
 
-						<div className="card-modern group cursor-pointer">
+						<div className="card-modern group hover:shadow-xl transition-shadow duration-300 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 cursor-pointer">
 							<div className="mb-4 flex items-center justify-between">
-								<div className="icon-container bg-secondary/10 text-secondary">
+								<div className="icon-container bg-success/10 text-success">
 									<FileCode className="h-full w-full" />
 								</div>
 								<div className="flex items-center gap-1.5">
@@ -547,8 +571,12 @@ export default function Dashboard() {
 							<p className="text-sm text-gray-500 dark:text-gray-400">By gopher_vim</p>
 							<div className="mt-4">
 								<div className="flex flex-wrap gap-2">
-									<span className="tag bg-accent/10 text-accent">Golang</span>
-									<span className="tag bg-secondary/10 text-secondary">Neovim</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Golang
+									</span>
+									<span className="tag bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary-dark transition-colors duration-200 rounded-lg px-3 py-1 text-sm font-medium">
+										Neovim
+									</span>
 								</div>
 							</div>
 						</div>
