@@ -87,7 +87,7 @@ export function PromptDialog({ open, onOpenChange, prompt, onSave }: PromptDialo
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g., Code Review Assistant"
-                className="bg-muted/50 border-border"
+                className="bg-muted/50 border-border rounded-xl"
               />
             </div>
             <div className="space-y-2">
@@ -97,7 +97,7 @@ export function PromptDialog({ open, onOpenChange, prompt, onSave }: PromptDialo
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 placeholder="e.g., Development, Git, DevOps"
-                className="bg-muted/50 border-border"
+                className="bg-muted/50 border-border rounded-xl"
               />
             </div>
           </div>
@@ -108,7 +108,7 @@ export function PromptDialog({ open, onOpenChange, prompt, onSave }: PromptDialo
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Enter your prompt here..."
-              className="bg-muted/50 border-border min-h-[180px] resize-none"
+              className="bg-muted/50 border-border min-h-[180px] resize-none rounded-xl"
             />
           </div>
           <div className="space-y-2">
@@ -119,9 +119,9 @@ export function PromptDialog({ open, onOpenChange, prompt, onSave }: PromptDialo
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Add a tag and press Enter"
-                className="bg-muted/50 border-border"
+                className="bg-muted/50 border-border rounded-xl"
               />
-              <Button type="button" variant="secondary" onClick={addTag}>
+              <Button type="button" variant="secondary" onClick={addTag} className="rounded-xl">
                 Add
               </Button>
             </div>
@@ -146,10 +146,10 @@ export function PromptDialog({ open, onOpenChange, prompt, onSave }: PromptDialo
           </div>
         </div>
         <DialogFooter className="gap-2">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button variant="outline" onClick={() => onOpenChange(false)} className="rounded-xl">
             Cancel
           </Button>
-          <Button onClick={handleSave} disabled={!title.trim() || !content.trim()}>
+          <Button onClick={handleSave} disabled={!title.trim() || !content.trim()} className="rounded-xl">
             {prompt ? 'Save Changes' : 'Create Prompt'}
           </Button>
         </DialogFooter>

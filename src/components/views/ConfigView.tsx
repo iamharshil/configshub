@@ -1,4 +1,4 @@
-import { ArrowLeft, FileCode, Folder, Plus, Search } from 'lucide-react';
+import { ArrowLeft, FileCode, Folder, Plus, Search, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { ConfigCard } from '@/components/ConfigCard';
@@ -10,29 +10,22 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ConfigFile, Folder as FolderType } from '@/types';
 
-interface ConfigsViewProps {
-  folders: FolderType[];
-  configs: ConfigFile[];
-  onAddFolder: (data: { name: string; icon: string; description?: string }) => void;
-  onUpdateFolder: (id: string, data: Partial<FolderType>) => void;
-  onDeleteFolder: (id: string) => void;
-  onAddConfig: (data: { name: string; content: string; language?: string; folderId: string }) => void;
-  onUpdateConfig: (id: string, data: Partial<ConfigFile>) => void;
-  onDeleteConfig: (id: string) => void;
-  getConfigsByFolder: (folderId: string) => ConfigFile[];
-}
+import { useOutletContext } from 'react-router-dom';
+import { useStore } from '@/hooks/useStore';
 
-export function ConfigsView({
-  folders,
-  configs,
-  onAddFolder,
-  onUpdateFolder,
-  onDeleteFolder,
-  onAddConfig,
-  onUpdateConfig,
-  onDeleteConfig,
-  getConfigsByFolder,
-}: ConfigsViewProps) {
+export function ConfigsView() {
+  const {
+    folders,
+    configs,
+    addFolder,
+    updateFolder,
+    deleteFolder,
+    addConfig,
+    updateConfig,
+    deleteConfig,
+    getConfigsByFolder,
+  } = useStore();
+  const { onOpenMobileMenu } = useOutletContext<{ onOpenMobileMenu: () => void }>();
   const [selectedFolder, setSelectedFolder] = useState<FolderType | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [folderDialogOpen, setFolderDialogOpen] = useState(false);
@@ -58,10 +51,10 @@ export function ConfigsView({
 
   const handleSaveFolder = (data: { name: string; icon: string; description?: string }) => {
     if (editingFolder) {
-      onUpdateFolder(editingFolder.id, data);
+      updateFolder(editingFolder.id, data);
       toast.success('Folder updated');
     } else {
-      onAddFolder(data);
+      addFolder(data);
       toast.success('Folder created');
     }
     setEditingFolder(null);
@@ -69,17 +62,17 @@ export function ConfigsView({
 
   const handleSaveConfig = (data: { name: string; content: string; language?: string; folderId: string }) => {
     if (editingConfig) {
-      onUpdateConfig(editingConfig.id, data);
+      updateConfig(editingConfig.id, data);
       toast.success('Config updated');
     } else {
-      onAddConfig(data);
+      addConfig(data);
       toast.success('Config created');
     }
     setEditingConfig(null);
   };
 
   const handleDeleteFolder = (folder: FolderType) => {
-    onDeleteFolder(folder.id);
+    deleteFolder(folder.id);
     if (selectedFolder?.id === folder.id) {
       setSelectedFolder(null);
     }
@@ -87,44 +80,53 @@ export function ConfigsView({
   };
 
   const handleDeleteConfig = (config: ConfigFile) => {
-    onDeleteConfig(config.id);
+    deleteConfig(config.id);
     toast.success('Config deleted');
   };
 
   return (
     <div className="flex-1 flex flex-col min-h-0">
       {/* Header */}
-      <header className="shrink-0 px-8 py-6 border-b border-border bg-card/50 backdrop-blur-sm">
-        <div className="flex items-center justify-between">
+      <header className="shrink-0 px-8 py-8">
+        <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="md:hidden text-muted-foreground"
+              onClick={onOpenMobileMenu}
+            >
+              <Menu className="w-5 h-5" />
+            </Button>
             {selectedFolder && (
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setSelectedFolder(null)}
+                className="mr-2"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
             )}
             <div>
-              <h1 className="text-2xl font-semibold text-foreground tracking-tight">
+              <h1 className="text-3xl font-bold text-foreground tracking-tight">
                 {selectedFolder ? selectedFolder.name : 'Configs'}
               </h1>
-              <p className="text-sm text-muted-foreground mt-0.5">
+              <p className="text-base text-muted-foreground mt-1">
                 {selectedFolder
                   ? `${folderConfigs.length} config${folderConfigs.length === 1 ? '' : 's'}`
-                  : `${folders.length} folder${folders.length === 1 ? '' : 's'} for your dev tools`}
+                  : `${folders.length} folders for your dev tools`}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="relative">
+            <div className="relative hidden md:block">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 w-64 bg-muted/50 border-border rounded-xl"
+                className="pl-10 w-64 bg-secondary/50 border-transparent focus:bg-secondary transition-all rounded-xl"
               />
             </div>
             <Button
@@ -137,10 +139,11 @@ export function ConfigsView({
                   setFolderDialogOpen(true);
                 }
               }}
-              className="rounded-xl"
+              className="rounded-xl bg-foreground text-background hover:bg-foreground/90 font-medium"
+              size="default"
             >
-              <Plus className="w-4 h-4 mr-2" />
-              {selectedFolder ? 'New Config' : 'New Folder'}
+              <Plus className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">{selectedFolder ? 'New Config' : 'New Folder'}</span>
             </Button>
           </div>
         </div>

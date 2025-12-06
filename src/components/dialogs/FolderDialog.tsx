@@ -64,7 +64,7 @@ export function FolderDialog({ open, onOpenChange, folder, onSave }: FolderDialo
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g., VSCode, Neovim, Tmux"
-              className="bg-muted/50 border-border"
+              className="bg-muted/50 border-border rounded-xl"
             />
           </div>
           <div className="space-y-2">
@@ -93,16 +93,16 @@ export function FolderDialog({ open, onOpenChange, folder, onSave }: FolderDialo
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Brief description of this folder's contents"
-              className="bg-muted/50 border-border resize-none"
+              className="bg-muted/50 border-border resize-none rounded-xl"
               rows={3}
             />
           </div>
         </div>
         <DialogFooter className="gap-2">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button variant="outline" onClick={() => onOpenChange(false)} className="rounded-xl">
             Cancel
           </Button>
-          <Button onClick={handleSave} disabled={!name.trim()}>
+          <Button onClick={handleSave} disabled={!name.trim()} className="rounded-xl">
             {folder ? 'Save Changes' : 'Create Folder'}
           </Button>
         </DialogFooter>

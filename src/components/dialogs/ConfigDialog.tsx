@@ -66,7 +66,7 @@ export function ConfigDialog({ open, onOpenChange, config, folderId, onSave }: C
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g., settings.json"
-                className="bg-muted/50 border-border"
+                className="bg-muted/50 border-border rounded-xl"
               />
             </div>
             <div className="space-y-2">
@@ -96,15 +96,15 @@ export function ConfigDialog({ open, onOpenChange, config, folderId, onSave }: C
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Paste your config content here..."
-              className="bg-muted/50 border-border font-mono text-sm min-h-[280px] resize-none"
+              className="bg-muted/50 border-border font-mono text-sm min-h-[280px] resize-none rounded-xl"
             />
           </div>
         </div>
         <DialogFooter className="gap-2">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button variant="outline" onClick={() => onOpenChange(false)} className="rounded-xl">
             Cancel
           </Button>
-          <Button onClick={handleSave} disabled={!name.trim() || !content.trim()}>
+          <Button onClick={handleSave} disabled={!name.trim() || !content.trim()} className="rounded-xl">
             {config ? 'Save Changes' : 'Create Config'}
           </Button>
         </DialogFooter>

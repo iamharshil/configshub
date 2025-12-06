@@ -1,4 +1,4 @@
-import { Plus, Search, Sparkles } from 'lucide-react';
+import { Plus, Search, Sparkles, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { PromptDialog } from '@/components/dialogs/PromptDialog';
@@ -8,19 +8,17 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Prompt } from '@/types';
 
-interface PromptsViewProps {
-  prompts: Prompt[];
-  onAddPrompt: (data: { title: string; content: string; category?: string; tags: string[] }) => void;
-  onUpdatePrompt: (id: string, data: Partial<Prompt>) => void;
-  onDeletePrompt: (id: string) => void;
-}
+import { useOutletContext } from 'react-router-dom';
+import { useStore } from '@/hooks/useStore';
 
-export function PromptsView({
-  prompts,
-  onAddPrompt,
-  onUpdatePrompt,
-  onDeletePrompt,
-}: PromptsViewProps) {
+export function PromptsView() {
+  const {
+    prompts,
+    addPrompt,
+    updatePrompt,
+    deletePrompt,
+  } = useStore();
+  const { onOpenMobileMenu } = useOutletContext<{ onOpenMobileMenu: () => void }>();
   const [searchQuery, setSearchQuery] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingPrompt, setEditingPrompt] = useState<Prompt | null>(null);
@@ -38,33 +36,43 @@ export function PromptsView({
 
   const handleSave = (data: { title: string; content: string; category?: string; tags: string[] }) => {
     if (editingPrompt) {
-      onUpdatePrompt(editingPrompt.id, data);
+      updatePrompt(editingPrompt.id, data);
       toast.success('Prompt updated');
     } else {
-      onAddPrompt(data);
+      addPrompt(data);
       toast.success('Prompt created');
     }
     setEditingPrompt(null);
   };
 
   const handleDelete = (prompt: Prompt) => {
-    onDeletePrompt(prompt.id);
+    deletePrompt(prompt.id);
     toast.success('Prompt deleted');
   };
 
   return (
     <div className="flex-1 flex flex-col min-h-0">
       {/* Header */}
-      <header className="shrink-0 px-8 py-6 border-b border-border bg-card/50 backdrop-blur-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold text-foreground tracking-tight">Prompts</h1>
-            <p className="text-sm text-muted-foreground mt-0.5">
-              {prompts.length} prompt{prompts.length === 1 ? '' : 's'} saved
-            </p>
+      <header className="shrink-0 px-6 py-5 border-b border-border/40">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="md:hidden text-muted-foreground"
+              onClick={onOpenMobileMenu}
+            >
+              <Menu className="w-5 h-5" />
+            </Button>
+            <div>
+              <h1 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">Prompts</h1>
+              <p className="text-xs md:text-sm text-muted-foreground mt-0.5">
+                {prompts.length} prompt{prompts.length === 1 ? '' : 's'} saved
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="relative">
+            <div className="relative hidden md:block">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder="Search prompts..."
@@ -73,9 +81,9 @@ export function PromptsView({
                 className="pl-10 w-64 bg-muted/50 border-border rounded-xl"
               />
             </div>
-            <Button onClick={() => { setEditingPrompt(null); setDialogOpen(true); }} className="rounded-xl">
-              <Plus className="w-4 h-4 mr-2" />
-              New Prompt
+            <Button onClick={() => { setEditingPrompt(null); setDialogOpen(true); }} className="rounded-xl" size="sm">
+              <Plus className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">New Prompt</span>
             </Button>
           </div>
         </div>

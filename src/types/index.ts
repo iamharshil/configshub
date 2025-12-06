@@ -26,4 +26,12 @@ export interface Prompt {
   updatedAt: Date;
 }
 
-export type ViewMode = 'configs' | 'prompts';
+export type ViewMode = 'configs' | 'prompts' | 'settings';
+
+export interface Workspace {
+  id: string;
+  name: string;
+  email?: string;
+  avatar: string;
+  color: string;
+}

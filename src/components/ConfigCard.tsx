@@ -29,7 +29,7 @@ export function ConfigCard({ config, onEdit, onDelete }: ConfigCardProps) {
   const langClass = languageColors[config.language || ''] || 'bg-muted text-muted-foreground';
 
   return (
-    <div className="group card-elevated p-5 transition-all duration-300 hover:shadow-soft-lg animate-fade-in">
+    <div className="group card-elevated p-5 transition-all duration-300 hover:shadow-md hover:border-primary/20 animate-fade-in rounded-2xl">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
@@ -50,7 +50,8 @@ export function ConfigCard({ config, onEdit, onDelete }: ConfigCardProps) {
               <Button
                 variant="ghost"
                 size="icon-sm"
-                className="opacity-0 group-hover:opacity-100 transition-opacity"
+                className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity"
+                aria-label="Config actions"
               >
                 <MoreHorizontal className="w-4 h-4" />
               </Button>

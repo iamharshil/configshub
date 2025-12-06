@@ -18,7 +18,7 @@ interface PromptCardProps {
 
 export function PromptCard({ prompt, onEdit, onDelete }: PromptCardProps) {
   return (
-    <div className="group card-elevated p-5 transition-all duration-300 hover:shadow-soft-lg animate-fade-in">
+    <div className="group card-elevated p-5 transition-all duration-300 hover:shadow-md hover:border-primary/20 animate-fade-in rounded-2xl">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">

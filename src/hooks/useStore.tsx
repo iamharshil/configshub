@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ConfigFile, Folder, Prompt } from '@/types';
+import { ConfigFile, Folder, Prompt, Workspace } from '@/types';
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
@@ -86,10 +86,43 @@ Keep it concise and descriptive.`,
   },
 ];
 
+interface User {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
 export function useStore() {
   const [folders, setFolders] = useState<Folder[]>(initialFolders);
   const [configs, setConfigs] = useState<ConfigFile[]>(initialConfigs);
   const [prompts, setPrompts] = useState<Prompt[]>(initialPrompts);
+
+  const [user, setUser] = useState<User>({
+    name: 'Jerry Hustanto',
+    email: 'jtanto@elano.com',
+    avatar: 'JH',
+  });
+
+  const updateUser = useCallback((data: Partial<User>) => {
+    setUser(prevUser => ({ ...prevUser, ...data }));
+  }, []);
+
+  const [workspaces, setWorkspaces] = useState<Workspace[]>([
+    {
+      id: '1',
+      name: 'Jerry Hustanto',
+      email: 'jtanto@elano.com',
+      avatar: 'JH',
+      color: 'bg-blue-600'
+    },
+    {
+      id: '2',
+      name: 'Personal',
+      avatar: 'ME',
+      color: 'bg-emerald-600'
+    }
+  ]);
+  const [currentWorkspace, setCurrentWorkspace] = useState<Workspace>(workspaces[0]);
 
   // Folder operations
   const addFolder = useCallback((folder: Omit<Folder, 'id' | 'createdAt'>) => {
@@ -155,10 +188,36 @@ export function useStore() {
     setPrompts(prev => prev.filter(p => p.id !== id));
   }, []);
 
+  // Workspace operations
+  const addWorkspace = useCallback((workspace: Omit<Workspace, 'id'>) => {
+    const newWorkspace: Workspace = {
+      ...workspace,
+      id: generateId(),
+    };
+    setWorkspaces(prev => [...prev, newWorkspace]);
+    return newWorkspace;
+  }, []);
+
+  const deleteWorkspace = useCallback((id: string) => {
+    setWorkspaces(prev => {
+      const newWorkspaces = prev.filter(w => w.id !== id);
+      // If we deleted the current workspace, switch to the first available one
+      if (currentWorkspace.id === id && newWorkspaces.length > 0) {
+        setCurrentWorkspace(newWorkspaces[0]);
+      }
+      return newWorkspaces;
+    });
+  }, [currentWorkspace.id]);
+
   return {
     folders,
     configs,
     prompts,
+    workspaces,
+    currentWorkspace,
+    setCurrentWorkspace,
+    addWorkspace,
+    deleteWorkspace,
     addFolder,
     updateFolder,
     deleteFolder,
@@ -169,5 +228,7 @@ export function useStore() {
     addPrompt,
     updatePrompt,
     deletePrompt,
+    user,
+    updateUser,
   };
 }
