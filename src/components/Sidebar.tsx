@@ -46,8 +46,12 @@ function SidebarContent({
   const activePath = location.pathname;
 
   const isActive = (path: string) => {
-    if (path === '/dashboard/configs' && activePath === '/dashboard') return true;
-    return activePath.startsWith(path);
+    // Exact match for the root dashboard path to avoid highlighting "Overview" on sub-routes
+    if (path === '/dashboard') {
+      return activePath === '/dashboard';
+    }
+    // For other routes, ensure we match the full segment (e.g. avoid matching /dashboard/conf to /dashboard/config if such paths existed)
+    return activePath === path || activePath.startsWith(path + '/');
   };
 
   return (

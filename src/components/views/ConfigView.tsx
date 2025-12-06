@@ -129,7 +129,9 @@ export function ConfigsView() {
               <ArrowLeft className="w-5 h-5" />
             </Button>
           )}
-          <span>{selectedFolder ? selectedFolder.name : 'Configs'}</span>
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight truncate">
+            {selectedFolder ? selectedFolder.name : 'Configs'}
+          </h1>
         </div>
       }
       description={selectedFolder

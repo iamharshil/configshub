@@ -19,8 +19,10 @@ const queryClient = new QueryClient();
 
 import { useState, useEffect } from "react";
 import { GlobalLoader } from "@/components/GlobalLoader";
+import { useTheme } from "@/hooks/useTheme";
 
 const App = () => {
+  useTheme(); // Initialize theme globally
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
