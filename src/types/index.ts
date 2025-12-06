@@ -9,9 +9,23 @@ export interface Folder {
 export interface ConfigFile {
   id: string;
   folderId: string;
+  history?: {
+    content: string;
+    updatedAt: Date;
+  }[];
   name: string;
   content: string;
   language?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Snippet {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  language: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -34,4 +48,13 @@ export interface Workspace {
   email?: string;
   avatar: string;
   color: string;
+}
+
+
+
+export interface Activity {
+  id: string;
+  type: 'create_config' | 'update_config' | 'create_prompt' | 'update_profile';
+  description: string;
+  createdAt: Date;
 }

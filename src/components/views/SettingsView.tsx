@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User, Building2, Plus, Mail, Trash2 } from 'lucide-react';
+import { User, Building2, Plus, Mail, Trash2, Users } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,10 +10,9 @@ import { cn } from '@/lib/utils';
 import { WorkspaceDialog } from '@/components/dialogs/WorkspaceDialog';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
-import { useOutletContext } from 'react-router-dom';
+import { PageLayout } from '@/components/PageLayout';
 
 export function SettingsView() {
-    const { onOpenMobileMenu } = useOutletContext<{ onOpenMobileMenu: () => void }>();
     const { currentWorkspace, workspaces, setCurrentWorkspace, deleteWorkspace, user, updateUser } = useStore();
     const [workspaceDialogOpen, setWorkspaceDialogOpen] = useState(false);
     const [name, setName] = useState(user.name);
@@ -32,27 +31,12 @@ export function SettingsView() {
     };
 
     return (
-        <div className="flex flex-col h-full bg-background md:bg-transparent">
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 md:p-6 border-b border-border/50 bg-background/50 backdrop-blur-sm sticky top-0 z-10">
-                <div className="flex items-center gap-3">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="md:hidden -ml-2 text-muted-foreground"
-                        onClick={onOpenMobileMenu}
-                    >
-                        <Menu className="w-5 h-5" />
-                    </Button>
-                    <div>
-                        <h1 className="text-2xl font-bold text-foreground tracking-tight">Settings</h1>
-                        <p className="text-sm text-muted-foreground">Manage your account and workspaces</p>
-                    </div>
-                </div>
-            </div>
-
+        <PageLayout
+            title="Settings"
+            description="Manage your account and workspaces"
+        >
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-6">
+            <div className="">
                 <Tabs defaultValue="account" className="w-full max-w-4xl space-y-6">
                     <TabsList className="bg-muted/50 p-1 rounded-xl">
                         <TabsTrigger value="account" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
@@ -62,6 +46,10 @@ export function SettingsView() {
                         <TabsTrigger value="workspaces" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
                             <Building2 className="w-4 h-4 mr-2" />
                             Workspaces
+                        </TabsTrigger>
+                        <TabsTrigger value="members" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
+                            <Users className="w-4 h-4 mr-2" />
+                            Members
                         </TabsTrigger>
                     </TabsList>
 
@@ -195,6 +183,52 @@ export function SettingsView() {
                                 ))}
                             </div>
                         </div>
+
+                    </TabsContent>
+
+                    <TabsContent value="members" className="space-y-6 animate-fade-in">
+                        <div className="p-6 rounded-2xl border border-border/50 bg-card/50 shadow-sm space-y-6">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-1">Team Members</h3>
+                                    <p className="text-sm text-muted-foreground">Manage who has access to this workspace.</p>
+                                </div>
+                                <Button onClick={() => toast.success("Invite sent!")} className="gap-2">
+                                    <Plus className="w-4 h-4" />
+                                    Invite Member
+                                </Button>
+                            </div>
+
+                            <div className="grid gap-4">
+                                {[
+                                    { name: user.name, email: user.email, role: 'Owner', avatar: user.avatar },
+                                    { name: 'Sarah Chen', email: 'sarah@elano.com', role: 'Admin', avatar: 'SC' },
+                                    { name: 'Mike Ross', email: 'mike@elano.com', role: 'Editor', avatar: 'MR' },
+                                ].map((member) => (
+                                    <div key={member.email} className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-background/50">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
+                                                {member.avatar}
+                                            </div>
+                                            <div>
+                                                <div className="font-medium">{member.name}</div>
+                                                <div className="text-sm text-muted-foreground">{member.email}</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-4">
+                                            <span className="text-sm font-medium px-2.5 py-1 rounded-full bg-muted text-muted-foreground">
+                                                {member.role}
+                                            </span>
+                                            {member.role !== 'Owner' && (
+                                                <Button variant="ghost" size="icon-sm" className="text-muted-foreground hover:text-destructive">
+                                                    <Trash2 className="w-4 h-4" />
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </TabsContent>
                 </Tabs>
             </div>
@@ -203,7 +237,7 @@ export function SettingsView() {
                 open={workspaceDialogOpen}
                 onOpenChange={setWorkspaceDialogOpen}
             />
-        </div>
+        </PageLayout >
     );
 }
 

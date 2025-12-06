@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ConfigFile, Folder, Prompt, Workspace } from '@/types';
+import { ConfigFile, Folder, Prompt, Workspace, Activity, Snippet } from '@/types';
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
@@ -107,6 +107,21 @@ export function useStore() {
     setUser(prevUser => ({ ...prevUser, ...data }));
   }, []);
 
+  // Activity operations
+  const [activities, setActivities] = useState<Activity[]>([
+    { id: '1', type: 'create_config', description: 'Created settings.json', createdAt: new Date() },
+    { id: '2', type: 'update_profile', description: 'Updated profile avatar', createdAt: new Date(Date.now() - 86400000) },
+  ]);
+
+  const logActivity = useCallback((type: Activity['type'], description: string) => {
+    setActivities(prev => [{
+      id: generateId(),
+      type,
+      description,
+      createdAt: new Date(),
+    }, ...prev]);
+  }, []);
+
   const [workspaces, setWorkspaces] = useState<Workspace[]>([
     {
       id: '1',
@@ -157,8 +172,25 @@ export function useStore() {
   }, []);
 
   const updateConfig = useCallback((id: string, updates: Partial<ConfigFile>) => {
-    setConfigs(prev => prev.map(c => c.id === id ? { ...c, ...updates, updatedAt: new Date() } : c));
-  }, []);
+    setConfigs(prev => prev.map(config => {
+      if (config.id !== id) return config;
+
+      // If content is changing, save to history
+      const history = config.history || [];
+      if (updates.content && updates.content !== config.content) {
+        history.unshift({
+          content: config.content,
+          updatedAt: new Date(),
+        });
+      }
+
+      return { ...config, ...updates, history, updatedAt: new Date() };
+    }));
+
+    if (updates.name || updates.content) {
+      logActivity('update_config', `Updated config ${updates.name || 'file'}`);
+    }
+  }, [logActivity]);
 
   const deleteConfig = useCallback((id: string) => {
     setConfigs(prev => prev.filter(c => c.id !== id));
@@ -209,6 +241,101 @@ export function useStore() {
     });
   }, [currentWorkspace.id]);
 
+  // Snippet operations
+  const [snippets, setSnippets] = useState<Snippet[]>([
+    {
+      id: 'docker-node',
+      title: 'Node.js Dockerfile',
+      description: 'Production-ready Dockerfile for Node.js applications',
+      language: 'dockerfile',
+      content: `FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+CMD ["node", "dist/main.js"]`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: 'gh-action-ci',
+      title: 'GitHub Actions CI',
+      description: 'Standard CI pipeline for testing and building',
+      language: 'yaml',
+      content: `name: CI
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm test
+      - run: npm run build`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: 'tsconfig-react',
+      title: 'React TSConfig',
+      description: 'Recommended tsconfig.json for React projects',
+      language: 'json',
+      content: `{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ]);
+
+  const addSnippet = useCallback((snippet: Omit<Snippet, 'id' | 'createdAt' | 'updatedAt'>) => {
+    const newSnippet: Snippet = {
+      ...snippet,
+      id: generateId(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    setSnippets(prev => [...prev, newSnippet]);
+    return newSnippet;
+  }, []);
+
+  const updateSnippet = useCallback((id: string, updates: Partial<Snippet>) => {
+    setSnippets(prev => prev.map(s => s.id === id ? { ...s, ...updates, updatedAt: new Date() } : s));
+  }, []);
+
+  const deleteSnippet = useCallback((id: string) => {
+    setSnippets(prev => prev.filter(s => s.id !== id));
+  }, []);
+
+
+
   return {
     folders,
     configs,
@@ -230,5 +357,11 @@ export function useStore() {
     deletePrompt,
     user,
     updateUser,
+    snippets,
+    addSnippet,
+    updateSnippet,
+    deleteSnippet,
+    activities,
+    logActivity,
   };
 }

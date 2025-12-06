@@ -1,5 +1,6 @@
-import { FileCode, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
+import { FileCode, MoreHorizontal, Pencil, Trash2, Share2, History } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CodeBlock } from './CodeBlock';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +14,8 @@ interface ConfigCardProps {
   config: ConfigFile;
   onEdit: () => void;
   onDelete: () => void;
+  onShare: () => void;
+  onHistory: () => void;
 }
 
 const languageColors: Record<string, string> = {
@@ -25,7 +28,7 @@ const languageColors: Record<string, string> = {
   typescript: 'bg-blue-500/15 text-blue-500',
 };
 
-export function ConfigCard({ config, onEdit, onDelete }: ConfigCardProps) {
+export function ConfigCard({ config, onEdit, onDelete, onShare, onHistory }: ConfigCardProps) {
   const langClass = languageColors[config.language || ''] || 'bg-muted text-muted-foreground';
 
   return (
@@ -57,6 +60,14 @@ export function ConfigCard({ config, onEdit, onDelete }: ConfigCardProps) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40 bg-popover border-border">
+              <DropdownMenuItem onClick={onShare}>
+                <Share2 className="w-4 h-4 mr-2" />
+                Share
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={onHistory}>
+                <History className="w-4 h-4 mr-2" />
+                History
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={onEdit}>
                 <Pencil className="w-4 h-4 mr-2" />
                 Edit
@@ -70,11 +81,13 @@ export function ConfigCard({ config, onEdit, onDelete }: ConfigCardProps) {
         </div>
       </div>
 
-      <div className="relative rounded-xl overflow-hidden">
-        <pre className="p-4 bg-muted/50 text-xs font-mono text-muted-foreground overflow-x-auto max-h-36 overflow-y-auto">
-          <code>{config.content}</code>
-        </pre>
-        <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-card to-transparent pointer-events-none" />
+      <div className="relative rounded-xl overflow-hidden bg-muted/50">
+        <CodeBlock
+          language={config.language || 'text'}
+          code={config.content}
+          className="max-h-36 overflow-y-auto bg-transparent"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-muted/50 to-transparent pointer-events-none" />
       </div>
     </div>
   );
