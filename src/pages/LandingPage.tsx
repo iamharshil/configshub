@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Zap, Shield, Users, GitBranch, Terminal, Sparkles, Download, Copy, FolderSync, History, Lock, Network } from 'lucide-react';
+import { ArrowRight, Code2, Zap, Shield, Users, GitBranch, Terminal, Sparkles, Download, Copy, FolderSync, History, Lock, Network, FileJson } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -43,24 +43,24 @@ export function LandingPage() {
 
     const useCases = [
         {
-            title: 'Dotfiles Management',
-            description: 'Keep your .zshrc, .vimrc, and other dotfiles synced across all machines',
-            icon: Terminal,
+            title: 'Config File Storage',
+            description: 'Store and organize your configuration files in one secure, accessible place',
+            icon: FileJson,
         },
         {
-            title: 'Team Configurations',
-            description: 'Share environment variables and configs across your development team',
-            icon: Users,
+            title: 'AI Prompts Library',
+            description: 'Save your favorite AI prompts and copy them with one click when you need them',
+            icon: Sparkles,
         },
         {
-            title: 'Multi-Environment Setup',
-            description: 'Manage dev, staging, and production configs in one place',
+            title: 'Code Snippets',
+            description: 'Build a personal library of reusable code snippets across any language',
+            icon: Code2,
+        },
+        {
+            title: 'Folder Organization',
+            description: 'Organize everything into folders by project, tool, or however you prefer',
             icon: FolderSync,
-        },
-        {
-            title: 'CI/CD Integration',
-            description: 'Inject configs directly into your deployment pipelines',
-            icon: Zap,
         },
     ];
 
