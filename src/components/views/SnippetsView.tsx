@@ -11,7 +11,6 @@ import {
     Dialog,
     DialogClose,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -29,12 +28,9 @@ import { useStore } from '@/hooks/useStore';
 import { Snippet } from '@/types';
 
 export function SnippetsView() {
-    const { addConfig, folders, snippets, addSnippet, updateSnippet, deleteSnippet } = useStore();
+    const { snippets, addSnippet, updateSnippet, deleteSnippet } = useStore();
     const [searchQuery, setSearchQuery] = useState('');
     const [copied, setCopied] = useState<string | null>(null);
-    const [selectedSnippet, setSelectedSnippet] = useState<Snippet | null>(null);
-    const [targetFolderId, setTargetFolderId] = useState<string>('');
-    const [useDialogOpen, setUseDialogOpen] = useState(false);
 
     // CRUD State
     const [editDialogOpen, setEditDialogOpen] = useState(false);
@@ -53,33 +49,7 @@ export function SnippetsView() {
         setTimeout(() => setCopied(null), 2000);
     };
 
-    const handleUseTemplate = (snippet: Snippet) => {
-        if (folders.length === 0) {
-            toast.error('Please create a folder first');
-            return;
-        }
-        setSelectedSnippet(snippet);
-        setTargetFolderId(folders[0].id);
-        setUseDialogOpen(true);
-    };
 
-    const handleConfirmUseTemplate = () => {
-        if (!selectedSnippet || !targetFolderId) return;
-
-        const folder = folders.find(f => f.id === targetFolderId);
-        if (!folder) return;
-
-        addConfig({
-            name: `${selectedSnippet.id}.${selectedSnippet.language === 'dockerfile' ? '' : selectedSnippet.language} `,
-            content: selectedSnippet.content,
-            language: selectedSnippet.language,
-            folderId: targetFolderId
-        });
-
-        toast.success(`Added ${selectedSnippet.title} to ${folder.name} `);
-        setUseDialogOpen(false);
-        setSelectedSnippet(null);
-    };
 
     const handleOpenEdit = (snippet?: Snippet) => {
         if (snippet) {
@@ -164,15 +134,6 @@ export function SnippetsView() {
                                     <Button
                                         variant="ghost"
                                         size="icon-sm"
-                                        onClick={() => handleUseTemplate(snippet)}
-                                        className="text-muted-foreground hover:text-foreground"
-                                        title="Create File from Snippet"
-                                    >
-                                        <Plus className="w-4 h-4" />
-                                    </Button>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon-sm"
                                         onClick={() => handleOpenEdit(snippet)}
                                         className="text-muted-foreground hover:text-foreground"
                                         title="Edit Snippet"
@@ -226,40 +187,7 @@ export function SnippetsView() {
                 </div>
             </div>
 
-            {/* Use Snippet Dialog */}
-            <Dialog open={useDialogOpen} onOpenChange={setUseDialogOpen}>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Create File from Snippet</DialogTitle>
-                        <DialogDescription>
-                            Choose a folder to save <strong>{selectedSnippet?.title}</strong> to.
-                        </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                        <div className="grid gap-2">
-                            <Label htmlFor="folder">Folder</Label>
-                            <Select value={targetFolderId} onValueChange={setTargetFolderId}>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select a folder" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {folders.map((folder) => (
-                                        <SelectItem key={folder.id} value={folder.id}>
-                                            {folder.name}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </div>
-                    <DialogFooter>
-                        <DialogClose asChild>
-                            <Button variant="outline">Cancel</Button>
-                        </DialogClose>
-                        <Button onClick={handleConfirmUseTemplate}>Create File</Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
+
 
             {/* Create/Edit Snippet Dialog */}
             <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>

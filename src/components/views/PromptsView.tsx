@@ -54,13 +54,13 @@ export function PromptsView() {
       title="Prompts"
       description={`${prompts.length} prompt${prompts.length === 1 ? '' : 's'} saved`}
       search={
-        <div className="relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <div className="relative w-full sm:w-auto">
+          <Search className="absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search prompts..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 w-64 bg-muted/50 border-border rounded-xl"
+            className="pl-9 sm:pl-10 w-full sm:w-48 md:w-64 bg-muted/50 border-border rounded-lg sm:rounded-xl text-sm"
           />
         </div>
       }
@@ -79,7 +79,7 @@ export function PromptsView() {
       }
     >
       {filteredPrompts.length > 0 ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-5">
           {filteredPrompts.map((prompt, index) => (
             <div key={prompt.id} style={{ animationDelay: `${index * 50}ms` }} className="animate-fade-in">
               <PromptCard

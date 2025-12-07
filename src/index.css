@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,120 +6,139 @@
 
 @layer base {
   :root {
-    /* Light mode - Conceptzilla-inspired */
-    --background: 210 40% 96%;
-    /* Soft cool gray/blue tint */
-    --foreground: 222 47% 11%;
-    /* Deep navy/black */
+    /* Light mode - Material Design Minimal */
+    --background: 0 0% 98%;
+    /* Clean light gray #fafafa */
+    --foreground: 0 0% 12%;
+    /* Dark text #1f1f1f */
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    /* Pure white */
+    --card-foreground: 0 0% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 0 0% 12%;
 
-    --primary: 222 47% 11%;
-    /* Dark brand color */
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    /* Muted blue #3b82f6 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 0 0% 96%;
+    /* Light gray */
+    --secondary-foreground: 0 0% 12%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    /* Medium gray */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 217 91% 60%;
+    /* Blue accent */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    /* Material red #f44336 */
+    --destructive-foreground: 0 0% 100%;
 
-    --success: 142 76% 36%;
+    --success: 122 39% 49%;
+    /* Material green #4caf50 */
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
+    --warning: 36 100% 50%;
+    /* Material amber #ff9800 */
     --warning-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222 47% 11%;
+    --border: 0 0% 90%;
+    /* Light border #e5e5e5 */
+    --input: 0 0% 90%;
+    --ring: 217 91% 60%;
 
-    --radius: 1rem;
-    /* Rounded aesthetic */
+    --radius: 0.5rem;
+    /* 8px - clean, minimal */
 
-    /* Custom tokens */
-    --surface: 0 0% 100%;
-    --surface-hover: 210 40% 98%;
-    --shadow-color: 220 40% 2%;
+    /* Material elevation shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-    /* Sidebar - Light & Airy */
+    /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 215 16% 47%;
-    --sidebar-primary: 222 47% 11%;
+    --sidebar-foreground: 0 0% 40%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96.1%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214.3 31.8% 91.4%;
-    --sidebar-ring: 222 47% 11%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 12%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
-    /* Dark mode - Deep & Rich */
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    /* Dark mode - Material Design Dark */
+    --background: 0 0% 7%;
+    /* #121212 Material dark */
+    --foreground: 0 0% 88%;
+    /* Light gray text */
 
-    --card: 222 47% 13%;
-    /* Slightly lighter than bg */
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 12%;
+    /* #1e1e1e */
+    --card-foreground: 0 0% 88%;
 
-    --popover: 222 47% 13%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 88%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 217 91% 60%;
+    /* Same blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 18%;
+    /* Dark gray */
+    --secondary-foreground: 0 0% 88%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 64%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --success: 142 70% 45%;
+    --success: 122 39% 49%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
+    --warning: 36 100% 50%;
     --warning-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 0 0% 20%;
+    /* Dark border */
+    --input: 0 0% 20%;
+    --ring: 217 91% 60%;
 
-    --surface: 222 47% 13%;
-    --surface-hover: 217.2 32.6% 17.5%;
-    --shadow-color: 0 0% 0%;
+    /* Dark mode shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
 
-    /* Sidebar - Dark Integration */
-    --sidebar-background: 222 47% 11%;
-    /* Matches main bg for seamless look */
-    --sidebar-foreground: 215 20.2% 65.1%;
-    --sidebar-primary: 210 40% 98%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 212.7 26.8% 83.9%;
+    /* Sidebar */
+    --sidebar-background: 0 0% 12%;
+    --sidebar-foreground: 0 0% 64%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 0 0% 88%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+
+  html {
+    @apply bg-black;
   }
 
   body {
@@ -134,23 +153,16 @@
 
 @layer components {
 
-  /* Card with soft shadow */
+  /* Material Design card with clean elevation */
   .card-elevated {
-    @apply bg-card rounded-2xl border border-border/50;
-    box-shadow:
-      0 1px 2px hsl(var(--shadow-color) / 0.02),
-      0 4px 8px hsl(var(--shadow-color) / 0.04),
-      0 12px 24px hsl(var(--shadow-color) / 0.06);
+    @apply bg-card rounded-lg border border-border shadow-md transition-shadow duration-200;
   }
 
   .card-elevated:hover {
-    box-shadow:
-      0 2px 4px hsl(var(--shadow-color) / 0.03),
-      0 8px 16px hsl(var(--shadow-color) / 0.06),
-      0 20px 40px hsl(var(--shadow-color) / 0.08);
+    @apply shadow-lg;
   }
 
-  /* Status indicators */
+  /* Status indicators - clean, no glow */
   .status-dot {
     @apply w-2.5 h-2.5 rounded-full;
   }
@@ -177,15 +189,28 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(217 91% 70%));
+  /* Material shadow utilities */
+  .shadow-material-sm {
+    box-shadow: var(--shadow-sm);
   }
 
+  .shadow-material {
+    box-shadow: var(--shadow);
+  }
+
+  .shadow-material-md {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-material-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Simple animations */
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(8px);
     }
 
     to {
@@ -194,10 +219,14 @@
     }
   }
 
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.96);
+      transform: scale(0.98);
     }
 
     to {
@@ -207,23 +236,12 @@
   }
 
   .animate-scale-in {
-    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: scaleIn 0.2s ease-out;
   }
 
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Noise texture */
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
   }
 }
 

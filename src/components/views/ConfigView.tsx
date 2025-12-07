@@ -129,7 +129,7 @@ export function ConfigsView() {
               <ArrowLeft className="w-5 h-5" />
             </Button>
           )}
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight truncate">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-tight truncate">
             {selectedFolder ? selectedFolder.name : 'Configs'}
           </h1>
         </div>
@@ -138,13 +138,13 @@ export function ConfigsView() {
         ? `${folderConfigs.length} config${folderConfigs.length === 1 ? '' : 's'}`
         : `${folders.length} folders for your dev tools`}
       search={
-        <div className="relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <div className="relative w-full sm:w-auto">
+          <Search className="absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 w-64 bg-secondary/50 border-transparent focus:bg-secondary transition-all rounded-xl"
+            className="pl-9 sm:pl-10 w-full sm:w-48 md:w-64 bg-secondary/50 border-transparent focus:bg-secondary transition-all rounded-lg sm:rounded-xl text-sm"
           />
         </div>
       }
@@ -170,7 +170,7 @@ export function ConfigsView() {
       {!selectedFolder ? (
         // Folders Grid
         filteredFolders.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
             {filteredFolders.map((folder, index) => (
               <div key={folder.id} style={{ animationDelay: `${index * 50}ms` }} className="animate-fade-in">
                 <FolderCard
@@ -199,7 +199,7 @@ export function ConfigsView() {
       ) : (
         // Configs Grid
         folderConfigs.length > 0 ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-3 sm:gap-5">
             {folderConfigs.map((config, index) => (
               <div key={config.id} style={{ animationDelay: `${index * 50}ms` }} className="animate-fade-in">
                 <ConfigCard

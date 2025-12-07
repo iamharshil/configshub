@@ -71,20 +71,20 @@ function SidebarContent({
                 key={item.path}
                 onClick={() => navigate(item.path)}
                 className={cn(
-                  "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group",
+                  "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 group",
                   collapsed && "justify-center px-0",
                   isActive(item.path)
-                    ? "bg-white dark:bg-sidebar-accent shadow-sm text-primary dark:text-sidebar-accent-foreground font-medium"
-                    : "text-sidebar-foreground hover:bg-white/50 dark:hover:bg-sidebar-accent/50 hover:text-foreground"
+                    ? "bg-primary text-primary-foreground font-medium"
+                    : "text-sidebar-foreground hover:bg-primary/10 hover:text-foreground"
                 )}
                 title={collapsed ? item.label : undefined}
               >
                 <item.icon className={cn(
-                  "w-5 h-5 shrink-0 transition-colors",
-                  isActive(item.path) ? "text-primary" : "text-sidebar-foreground/70 group-hover:text-foreground"
+                  "w-5 h-5 shrink-0",
+                  isActive(item.path) ? "text-primary-foreground" : "text-muted-foreground group-hover:text-foreground"
                 )} />
                 {!collapsed && (
-                  <span className="text-sm animate-fade-in">{item.label}</span>
+                  <span className="text-sm">{item.label}</span>
                 )}
               </button>
             ))}

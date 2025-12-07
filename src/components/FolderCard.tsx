@@ -46,20 +46,20 @@ export function FolderCard({ folder, configCount, isSelected, onClick, onEdit, o
         isSelected && "ring-2 ring-primary/20 border-primary/20 bg-primary/5"
       )}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
           <div className={cn(
-            "w-14 h-14 rounded-2xl flex items-center justify-center transition-colors",
+            "w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center transition-colors flex-shrink-0",
             isSelected ? "bg-primary/15" : "bg-secondary/80 group-hover:bg-secondary"
           )}>
             <Icon className={cn(
-              "w-7 h-7 transition-colors",
+              "w-6 h-6 sm:w-7 sm:h-7 transition-colors",
               isSelected ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
             )} />
           </div>
-          <div>
-            <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">{folder.name}</h3>
-            <p className="text-sm text-muted-foreground mt-0.5">
+          <div className="min-w-0 flex-1">
+            <h3 className="text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors truncate">{folder.name}</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
               {configCount} {configCount === 1 ? 'config' : 'configs'}
             </p>
           </div>

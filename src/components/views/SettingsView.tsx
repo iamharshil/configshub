@@ -37,52 +37,61 @@ export function SettingsView() {
         >
             {/* Content */}
             <div className="">
-                <Tabs defaultValue="account" className="w-full max-w-4xl space-y-6">
-                    <TabsList className="bg-muted/50 p-1 rounded-xl">
-                        <TabsTrigger value="account" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
-                            <User className="w-4 h-4 mr-2" />
-                            Account
+                <Tabs defaultValue="account" className="w-full max-w-4xl space-y-4 sm:space-y-6">
+                    <TabsList className="w-full sm:w-auto flex flex-wrap bg-muted/50 p-1 rounded-lg gap-1">
+                        <TabsTrigger
+                            value="account"
+                            className="flex-1 sm:flex-none text-xs sm:text-sm rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow hover:bg-primary/10"
+                        >
+                            <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                            <span>Account</span>
                         </TabsTrigger>
-                        <TabsTrigger value="workspaces" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
-                            <Building2 className="w-4 h-4 mr-2" />
-                            Workspaces
+                        <TabsTrigger
+                            value="workspaces"
+                            className="flex-1 sm:flex-none text-xs sm:text-sm rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow hover:bg-primary/10"
+                        >
+                            <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                            <span>Workspaces</span>
                         </TabsTrigger>
-                        <TabsTrigger value="members" className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm">
-                            <Users className="w-4 h-4 mr-2" />
-                            Members
+                        <TabsTrigger
+                            value="members"
+                            className="flex-1 sm:flex-none text-xs sm:text-sm rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow hover:bg-primary/10"
+                        >
+                            <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                            <span>Members</span>
                         </TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="account" className="space-y-6 animate-fade-in">
                         <div className="grid gap-6">
                             {/* Profile Section */}
-                            <div className="p-6 rounded-2xl border border-border/50 bg-card/50 shadow-sm space-y-6">
+                            <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-border/50 bg-card/50 shadow-sm space-y-4 sm:space-y-6">
                                 <div>
-                                    <h3 className="text-lg font-semibold mb-1">Profile</h3>
-                                    <p className="text-sm text-muted-foreground">Manage your public profile information.</p>
+                                    <h3 className="text-base sm:text-lg font-semibold mb-1">Profile</h3>
+                                    <p className="text-xs sm:text-sm text-muted-foreground">Manage your public profile information.</p>
                                 </div>
 
-                                <div className="flex items-start gap-6">
-                                    <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary">
+                                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center text-xl sm:text-2xl font-bold text-primary">
                                         {user.avatar}
                                     </div>
-                                    <div className="flex-1 space-y-4">
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="name">Display Name</Label>
+                                    <div className="flex-1 w-full space-y-3 sm:space-y-4">
+                                        <div className="grid gap-1.5 sm:gap-2">
+                                            <Label htmlFor="name" className="text-sm">Display Name</Label>
                                             <Input
                                                 id="name"
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
-                                                className="max-w-md rounded-xl"
+                                                className="w-full sm:max-w-md rounded-lg sm:rounded-xl"
                                             />
                                         </div>
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="email">Email</Label>
+                                        <div className="grid gap-1.5 sm:gap-2">
+                                            <Label htmlFor="email" className="text-sm">Email</Label>
                                             <Input
                                                 id="email"
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                className="max-w-md rounded-xl"
+                                                className="w-full sm:max-w-md rounded-lg sm:rounded-xl"
                                             />
                                         </div>
                                     </div>

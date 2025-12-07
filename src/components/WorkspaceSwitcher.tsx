@@ -65,7 +65,7 @@ export function WorkspaceSwitcher({ collapsed }: WorkspaceSwitcherProps) {
                         <DropdownMenuItem
                             key={workspace.id}
                             onClick={() => setCurrentWorkspace(workspace)}
-                            className="flex items-center gap-3 p-2 cursor-pointer rounded-lg focus:bg-accent"
+                            className="flex items-center gap-3 p-2 cursor-pointer rounded-lg"
                         >
                             <div className={cn(
                                 "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white text-xs font-medium",
@@ -87,7 +87,7 @@ export function WorkspaceSwitcher({ collapsed }: WorkspaceSwitcherProps) {
                     <DropdownMenuSeparator className="my-2 bg-border/50" />
                     <DropdownMenuItem
                         onClick={() => setDialogOpen(true)}
-                        className="flex items-center gap-3 p-2 cursor-pointer rounded-lg focus:bg-accent"
+                        className="flex items-center gap-3 p-2 cursor-pointer rounded-lg"
                     >
                         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-dashed border-muted-foreground/50 bg-background">
                             <Plus className="h-4 w-4 text-muted-foreground" />
